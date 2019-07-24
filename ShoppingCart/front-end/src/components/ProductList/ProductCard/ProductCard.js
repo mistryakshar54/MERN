@@ -8,7 +8,7 @@ const ProductCardComponent = ( props ) => {
         <Card.Body>
           <Card.Title>{props.product.name}</Card.Title>
           <Card.Text>{props.product.price}</Card.Text>
-          <Button variant="primary">Add to Cart</Button>
+          <Button onClick={() => props.onAddToCart(props.product)} variant="primary">Add to Cart</Button>
         </Card.Body>
       </Card>
     );
