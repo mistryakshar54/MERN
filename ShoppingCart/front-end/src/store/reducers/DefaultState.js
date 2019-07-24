@@ -35,7 +35,8 @@ export const initialState = {
         cartSummary : {
             totalItems : 0,
             totalAmount : 0,
-            shippingCharge : 0
+            shippingCharge : 0,
+            currency : 'INR'
         }
     },
     apiStatus : {
