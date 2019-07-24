@@ -7,7 +7,7 @@ const products = [{
     rating : 3.5
 }];
 class Product {
-    constructor(id, name, price, currency,description , rating )
+    constructor(id, name, price, currency,description , rating, image )
     {
         this.id = id;
         this.name = name;
@@ -15,6 +15,7 @@ class Product {
         this.currency = currency;
         this.description = description;
         this.rating = rating;
+        this.image = image;
     }
     
     addNewProduct(){
@@ -28,7 +29,8 @@ class Product {
                 prod_id : item.id,
                 prod_name : item.name,
                 prod_price : item.price,
-                prod_rating : item.rating
+                prod_rating : item.rating,
+                prod_image : item.image
             }
         });
     }
