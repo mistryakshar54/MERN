@@ -1,0 +1,31 @@
+.cart-active
+{
+    .checkout__order
+    {
+        background-color: aqua;
+        z-index: 100;
+        right: 0;
+        width: 100vh;
+        position: absolute;
+        visibility: visible;
+           transform: translate3d(10%, -50%, 0) translate3d(-66px, 67px, 0);
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+}
+.cart 
+{
+    .checkout__order
+    {
+        background-color: aqua;
+        z-index: 100;
+        right: 0;
+        width: 100vh;
+        position: absolute;
+        // visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transition-delay: 0s;
+	transition-delay: 0s;
+    }
+}    
+

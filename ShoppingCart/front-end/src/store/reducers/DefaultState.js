@@ -2,28 +2,28 @@ export const initialState = {
     products: {
         productsList:[
         {
-            id: "12121",
+            id: "1234",
             name: "Converse",
             price: 50000,
-            currency: "INR",
+            currency: "Rs",
             description: "Good Laptop",
             rating: 3.5,
             image: "images/converse.jpg"
         },
         {
-            id: "12121",
+            id: "1235",
             name: "Laptop",
             price: 50000,
-            currency: "INR",
+            currency: "Rs",
             description: "Good Laptop",
             rating: 3.5,
             image: "images/hp.jpg"
         },
         {
-            id: "12121",
+            id: "1236",
             name: "Cover",
             price: 50000,
-            currency: "INR",
+            currency: "Rs",
             description: "Good Laptop",
             rating: 3.5,
             image: "images/cover.jpg"
