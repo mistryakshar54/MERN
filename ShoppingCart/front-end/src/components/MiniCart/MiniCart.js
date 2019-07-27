@@ -1,11 +1,11 @@
 import React,{ Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingBag , faTrash , faPlus , faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import Badge from 'react-bootstrap/Badge';
 import './MiniCart.scss';
 import Modal from 'react-bootstrap/Modal';
-import Table from "react-bootstrap/Table";
 import * as CartActions from "../../store/actioncreators/MiniCartActionCreator";
+import CartLineItems from "./CartLineItems/CartLineItems";
 
 import {connect} from 'react-redux';
 class MiniCartComponent extends Component {
@@ -57,75 +57,16 @@ class MiniCartComponent extends Component {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <Table className="text-centered" responsive>
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Product</th>
-                      <th>Price</th>
-                      <th>Qty</th>
-                      <th>Total</th>
-                      <th>Remove</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.props.cartObject.cartItems.map(
-                      (item, index) => {
-                        return (
-                          <tr key={"ci -" + index}>
-                            <td>{index + 1}</td>
-                            <td>{item.name}</td>
-                            <td>
-                              {item.price}{" "}
-                              {item.currency}
-                            </td>
-                            <td>
-                              <FontAwesomeIcon
-                                onClick={() =>
-                                  this.props.onAddQtyHandler(
-                                    item
-                                  )
-                                }
-                                icon={faPlus}
-                              />
-                              <span
-                                style={{
-                                  padding: "0% 10%"
-                                }}
-                              >
-                                {item.qty}
-                              </span>
-                              <FontAwesomeIcon
-                                onClick={() =>
-                                  this.props.onRemoveQtyHandler(
-                                    item,
-                                    index
-                                  )
-                                }
-                                icon={faMinus}
-                              />
-                            </td>
-                            <td>
-                              {item.price * item.qty}{" "}
-                              {item.currency}
-                            </td>
-                            <td>
-                              <FontAwesomeIcon
-                                onClick={() =>
-                                  this.props.onDeleteItemHandler(
-                                    item,
-                                    index
-                                  )
-                                }
-                                icon={faTrash}
-                              />
-                            </td>
-                          </tr>
-                        );
-                      }
-                    )}
-                  </tbody>
-                </Table>
+                {this.props.cartObject.cartItems.length > 0 ? (
+                  <CartLineItems
+                    cartItems={this.props.cartObject.cartItems}
+                    addQty={this.props.onAddQtyHandler}
+                    reduceQty={this.props.onRemoveQtyHandler}
+                    removeItem={this.props.onDeleteItemHandler}
+                  />
+                ) : (
+                  <h1>Empty Cart :(</h1>
+                )}
               </Modal.Body>
             </Modal>
           </div>
