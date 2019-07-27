@@ -4,12 +4,11 @@ import initialState from "./DefaultState";
 const MiniCartReducer = (stateSlice = initialState.cart, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
-      debugger;
       if (action.payload) {
-        let cartObj = Object.assign({}, stateSlice);
+        // let cartObj = Object.assign({}, stateSlice);
         let cartArr = Object.assign([], stateSlice.cartItems);
         let matchIndex = -1;
-        cartObj.cartItems.forEach((item, index) => {
+        cartArr.forEach((item, index) => {
           if (item.id === action.payload.id) {
             matchIndex = index;
           }
@@ -18,23 +17,20 @@ const MiniCartReducer = (stateSlice = initialState.cart, action) => {
         {
           let item = cartArr[matchIndex]; 
           item.qty++;
-          cartArr[matchIndex] = item; 
+          cartArr[matchIndex] = Object.assign({} , item); 
           return {
             ...stateSlice,
-            [stateSlice.cartItems]: {
-              ...stateSlice.cartItems,
-              [stateSlice.cartItems[matchIndex]] : item
-            }
-          };
+            cartItems : cartArr
+          }
         }
         else
         {
-          cartObj.cartItems.push(action.payload);
-        }
+          cartArr.push(action.payload);
           return {
             ...stateSlice,
-            cartItems: cartObj.cartItems
+            cartItems: cartArr
           };
+        }
       }
     }
     case "UPDATE_CART_SUMMARY" : {
@@ -48,11 +44,16 @@ const MiniCartReducer = (stateSlice = initialState.cart, action) => {
       {
         let cartObj = Object.assign( {} , stateSlice );
         let cartItem = cartObj.cartItems[action.payloadIndex];
-        if (cartItem.qty > 1)
-        {
+        debugger;
+        if (cartItem.qty === 1 || action.deleteFlag === true) {
+          cartObj.cartItems.splice(action.payloadIndex, 1);
+        } else {
           cartItem.qty--;
+          cartObj.cartItems[action.payloadIndex] = Object.assign(
+            {},
+            cartItem
+          );
         }
-         cartObj.cartItems.splice(action.payloadIndex, 1);
         return { 
           ...stateSlice,
           cartItems: cartObj.cartItems

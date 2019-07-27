@@ -25,4 +25,4 @@ const AppHeader = ( props )=>{
     );
 }
 
-export default AppHeader;;
+export default AppHeader;

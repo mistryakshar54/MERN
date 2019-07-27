@@ -14,3 +14,25 @@ export const addProductToCart = ( productData ) => {
         payload : productData
     }
 }
+
+export const addQty = ( productData ) => {
+    return addProductToCart( productData );
+}
+
+export const removeQty = ( productData , index ) => {
+    return {
+      type: "REMOVE_FROM_CART",
+      payload: productData,
+      payloadIndex: index
+    };
+}
+
+
+export const removeProductFromCart = (productData, index) => {
+         return {
+           type: "REMOVE_FROM_CART",
+           payload: productData,
+           payloadIndex: index,
+           deleteFlag: true
+         };
+       };
