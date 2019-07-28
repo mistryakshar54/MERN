@@ -5,6 +5,7 @@ export const addProductToCartThunk = ( productData ) => {
         productData.qty = 1;
         // CoreActions.dispatchPromise( 'sample end point' , addProductToCart( productData) );
         dispatch( addProductToCart( productData) );
+        dispatch( updateCartSummary() );
     }
 }
 
@@ -27,12 +28,17 @@ export const removeQty = ( productData , index ) => {
     };
 }
 
-
 export const removeProductFromCart = (productData, index) => {
-         return {
-           type: "REMOVE_FROM_CART",
-           payload: productData,
-           payloadIndex: index,
-           deleteFlag: true
-         };
-       };
+  return {
+    type: "REMOVE_FROM_CART",
+    payload: productData,
+    payloadIndex: index,
+    deleteFlag: true
+  };
+};
+
+export const updateCartSummary = () => {
+    return {
+      type: "UPDATE_CART_SUMMARY"
+    };
+}

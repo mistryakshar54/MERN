@@ -5,7 +5,6 @@ const MiniCartReducer = (stateSlice = initialState.cart, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
       if (action.payload) {
-        // let cartObj = Object.assign({}, stateSlice);
         let cartArr = Object.assign([], stateSlice.cartItems);
         let matchIndex = -1;
         cartArr.forEach((item, index) => {
@@ -34,6 +33,22 @@ const MiniCartReducer = (stateSlice = initialState.cart, action) => {
       }
     }
     case "UPDATE_CART_SUMMARY" : {
+      if(stateSlice.cartItems.length > 0)
+      {
+        let cartSummary = Object.assign({} ,stateSlice.cartSummary);
+        let totalAmount= 0;
+        stateSlice.cartItems.forEach( item => {
+          totalAmount = totalAmount + item.price * item.qty;
+        });
+        cartSummary.totalItems = stateSlice.cartItems.length;;
+        cartSummary.totalAmount = totalAmount;
+        cartSummary.shippingCharge = 0;
+        cartSummary.currency = stateSlice.cartItems[0].currency;
+        return {
+          ...stateSlice,
+          cartSummary: cartSummary
+        };  
+      }
       return {
         ...stateSlice,
         cartSummary: action.payload,

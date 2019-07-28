@@ -4,7 +4,7 @@ import CheckoutComponent from '../../Checkout/Checkout';
 import NotFoundComponent from "../../NotFound/404";
 
 import './Content.scss';
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 
 const AppContent = (props)=>{
