@@ -19,19 +19,19 @@ class ProductListComponent extends Component {
   render() {
     if (this.props.productsList && this.props.productsList.length > 0) {
       return (
-        <div className="container">
-          <CardDeck>
+        <div className="container-fluid">
+          <div className="d-flex p-2 justify-content-start flex-wrap">
             {this.props.productsList.map((item, index) => {
               return (
-                <ProductCardComponent 
-                  product={item} key={"prod-" + index}
-                  onAddToCart={this.addToCartHandler }
+                <ProductCardComponent
+                  product={item}
+                  key={"prod-" + index}
+                  onAddToCart={this.addToCartHandler}
                 />
               );
             })}
-          </CardDeck>
+          </div>
         </div>
-
       );
     } else {
       return <h1>Loading..</h1>;

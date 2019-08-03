@@ -1,9 +1,10 @@
 import React from 'react';
 import Card from "react-bootstrap/Card";
 import Button from 'react-bootstrap/Button';
+import "./ProductCard.scss";
 const ProductCardComponent = ( props ) => {
     return (
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "20rem" }}>
         <Card.Img variant="top" src={props.product.image} />
         <Card.Body>
           <Card.Title>{props.product.name}</Card.Title>

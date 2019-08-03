@@ -9,12 +9,14 @@ import { Route, Switch } from "react-router-dom";
 
 const AppContent = (props)=>{
     return (
-      <div className="app-content">
+      <div className="app-content container-fluid">
+        <div className="row">
         <Switch>
             <Route path="/" exact component={ProductListComponent} />
             <Route path="/checkout"  component={CheckoutComponent} />
             <Route component={NotFoundComponent} />
         </Switch>
+        </div>
       </div>
     ); 
 

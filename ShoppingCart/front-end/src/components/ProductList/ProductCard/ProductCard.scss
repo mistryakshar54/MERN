@@ -1,0 +1,15 @@
+.card
+{
+    margin: 2% 2%;
+    border-radius: 0px;
+}
+.card-img-top {
+    width: auto!important;
+    max-height: 300px;
+}
+.card:hover
+{
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    box-shadow: 1px 1px 12px 0px #d2d2d2;
+}
