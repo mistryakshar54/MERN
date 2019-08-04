@@ -57,6 +57,12 @@ export const initialState = {
              currency: "INR"
            }
          },
+         auth: {
+           authToken: null,
+           isAuthenticated: false,
+           authUser: {},
+           expiresAt : 0
+         },
          apiStatus: {
            loadingState: false,
            apiStatus: 200,
