@@ -6,6 +6,8 @@ import './MiniCart.scss';
 import Modal from 'react-bootstrap/Modal';
 import * as CartActions from "../../store/actioncreators/MiniCartActionCreator";
 import CartLineItems from "./CartLineItems/CartLineItems";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 import {connect} from 'react-redux';
 class MiniCartComponent extends Component {
@@ -31,7 +33,12 @@ class MiniCartComponent extends Component {
     setShow = ( visibilityFlag ) => {
         this.setState({ showModal: visibilityFlag });
     }
- 
+    
+    redirectToCheckout = () => {
+      this.setShow(false);
+      this.props.history.push('/checkout');
+    }
+
     render(){
         return (
           <div className={this.state.miniCartClass}>
@@ -58,13 +65,17 @@ class MiniCartComponent extends Component {
               </Modal.Header>
               <Modal.Body>
                 {this.props.cartObject.cartItems.length > 0 ? (
-                  <CartLineItems
-                    cartItems={this.props.cartObject.cartItems}
-                    addQty={this.props.onAddQtyHandler}
-                    reduceQty={this.props.onRemoveQtyHandler}
-                    removeItem={this.props.onDeleteItemHandler}
-                  />
-                ) : (
+                  <React.Fragment>
+                    <CartLineItems
+                      cartItems={this.props.cartObject.cartItems}
+                      addQty={this.props.onAddQtyHandler}
+                      reduceQty={this.props.onRemoveQtyHandler}
+                      removeItem={this.props.onDeleteItemHandler}
+                    />
+                      <Button variant="outline-dark" onClick={this.redirectToCheckout} >Proceed To Checkout</Button> 
+                  </React.Fragment>
+
+                ) : ( 
                   <h1>Empty Cart :(</h1>
                 )}
               </Modal.Body>
