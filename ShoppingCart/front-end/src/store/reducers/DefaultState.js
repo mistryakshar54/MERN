@@ -66,7 +66,9 @@ export const initialState = {
          apiStatus: {
            loadingState: false,
            apiStatus: 200,
-           message: ""
+           message: "",
+           toggleErrorModal : false,
+           toggleAlert : false
          }
        };
 export default initialState;
