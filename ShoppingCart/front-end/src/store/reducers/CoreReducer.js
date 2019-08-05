@@ -3,28 +3,35 @@ import initialState from "./DefaultState";
 const CoreReducer = (stateSlice = initialState.apiStatus, action) => {
   switch (action.type) {
     case "SUCCESS_API": {
-      let successApi = {
-        loadingState: false,
-        apiStatus: 200,
-        message: ""
-      };
-      return { ...stateSlice, apiStatus: successApi };
+      let successApi = Object.assign({}, stateSlice);
+      successApi.loadingState = false;
+      successApi.apiStatus = 200;
+      successApi.message = "";
+      return { ...successApi };
     }
     case "ERROR_API": {
-      let errorApi = {
-        loadingState: false,
-        apiStatus: action.payload.status,
-        message: action.payload.message
-      };
-      return { ...stateSlice, apiStatus: errorApi };
+      let errorApi = Object.assign({}, stateSlice);
+      errorApi.loadingState = false;
+      errorApi.apiStatus = action.payload.status;
+      errorApi.message = action.payload.message;
+      errorApi.toggleAlert = true;
+      return { ...errorApi };
     }
     case "LOADING_API": {
-      let loadingApi = {
-        loadingState: true,
-        apiStatus: 0,
-        message: ""
-      };
-      return { ...stateSlice, apiStatus: loadingApi };
+      let loadingApi = Object.assign({}, stateSlice);
+      loadingApi.loadingState = true;
+      loadingApi.apiStatus = 200;
+      loadingApi.message = "";
+      loadingApi.toggleAlert = false;
+      return { ...loadingApi };
+    }
+    case "RESET_API": {
+      let resetApi = Object.assign({}, stateSlice);
+      resetApi.loadingState = false;
+      resetApi.apiStatus = 200;
+      resetApi.message = "";
+      resetApi.toggleAlert = false;
+      return { ...resetApi };
     }
     default:
       return { ...stateSlice };
