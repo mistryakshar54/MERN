@@ -4,11 +4,13 @@ import ProductsReducer from "./reducers/ProductsReducer";
 import MiniCartReducer from './reducers/MiniCartReducer';
 import CoreReducer from "./reducers/CoreReducer";
 import AuthReducer from "./reducers/AuthReducer";
+import OrderReducer from "./reducers/OrderReducer";
 const combinedReducer = combineReducers({
   ProductsReducer,
   MiniCartReducer,
   CoreReducer,
-  AuthReducer
+  AuthReducer,
+  OrderReducer
 });
 
 // const store = createStore(combinedReducer, applyMiddleware(thunk));

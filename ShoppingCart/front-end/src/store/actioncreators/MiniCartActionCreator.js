@@ -2,9 +2,16 @@ import * as CoreActions from "./CoreActionCreators";
 
 export const addProductToCartThunk = ( productData ) => {
     return dispatch => {
-        productData.qty = 1;
+        let itemData = {
+          name: productData.name,
+          qty: 1,
+          id: productData.id,
+          image : productData.image,
+          price : productData.price,
+          currency : productData.currency
+        }; 
         // CoreActions.dispatchPromise( 'sample end point' , addProductToCart( productData) );
-        dispatch( addProductToCart( productData) );
+        dispatch(addProductToCart(itemData));
         dispatch( updateCartSummary() );
     }
 }

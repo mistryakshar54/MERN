@@ -7,8 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import * as CartActions from "../../store/actioncreators/MiniCartActionCreator";
 import CartLineItems from "./CartLineItems/CartLineItems";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
-
+import { withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
 class MiniCartComponent extends Component {
 
@@ -18,7 +17,6 @@ class MiniCartComponent extends Component {
     }
     
     toggleMinicart = () => {
-        debugger;
         let cartClass = this.state.miniCartClass;
         if (cartClass === 'cart-active' )
         {
@@ -98,4 +96,4 @@ const mapDispatchToProps = ( dispatch ) => {
     }
 }
 
-export default connect(mapStateToProps , mapDispatchToProps)(MiniCartComponent);
+export default withRouter(connect(mapStateToProps , mapDispatchToProps)(MiniCartComponent));

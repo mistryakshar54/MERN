@@ -59,7 +59,6 @@ const MiniCartReducer = (stateSlice = initialState.cart, action) => {
       {
         let cartObj = Object.assign( {} , stateSlice );
         let cartItem = cartObj.cartItems[action.payloadIndex];
-        debugger;
         if (cartItem.qty === 1 || action.deleteFlag === true) {
           cartObj.cartItems.splice(action.payloadIndex, 1);
         } else {
