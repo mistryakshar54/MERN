@@ -5,7 +5,6 @@ const AuthReducer = (stateSlice = initialState.auth, action) => {
     case "AUTH_LOGIN": {
       if( action.payload )
       {
-          debugger;
         let authPayload = Object.assign( {} , action.payload );
          return {
            ...authPayload

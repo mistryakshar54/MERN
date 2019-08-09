@@ -69,6 +69,10 @@ export const initialState = {
            message: "",
            toggleErrorModal : false,
            toggleAlert : false
+         },
+         order:{
+           currentOrder : {},
+           orderList : []
          }
        };
 export default initialState;
