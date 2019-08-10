@@ -17,7 +17,7 @@ if (props.apiStatus.toggleAlert === true) {
       onClose={() => closeDismissAlert()}
       dismissible
     >
-      <Alert.Heading>Error occured while fetching data!</Alert.Heading>
+      <Alert.Heading>{props.apiStatus.message}</Alert.Heading>
     </Alert>
   );
 }
