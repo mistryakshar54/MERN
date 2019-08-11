@@ -12,8 +12,8 @@ const CoreReducer = (stateSlice = initialState.apiStatus, action) => {
     case "ERROR_API": {
       let errorApi = Object.assign({}, stateSlice);
       errorApi.loadingState = false;
-      errorApi.apiStatus = action.payload.status;
-      errorApi.message = action.payload.message;
+      errorApi.apiStatus = action.status;
+      errorApi.message = action.message;
       errorApi.toggleAlert = true;
       return { ...errorApi };
     }

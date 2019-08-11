@@ -22,7 +22,7 @@ export const openAuthPopupThunk = () => {
         {
             window.localStorage.setItem("authUser", JSON.stringify(authData));
         }
-        dispatch(autoLogoutThunk(expiresAt));
+        dispatch(autoLogoutThunk(expiresAt - new Date().getTime()));
         dispatch(setAuthData(authData));
       })
       .catch(function(error) {
@@ -71,13 +71,14 @@ export const logoutUser = () => {
 };
 
 export const checkIsLoggedInThunk = () => {
+  debugger;
     return dispatch => {
         if(window.localStorage && ( window.localStorage.getItem("authUser") !== null ))
         {
             let authData = JSON.parse(window.localStorage.getItem("authUser"));
             if(authData.expiresAt > new Date().getTime() + 1000)
             {
-               dispatch(autoLogoutThunk(authData.expiresAt));
+               dispatch(autoLogoutThunk(authData.expiresAt - new Date().getTime()));
                dispatch(setAuthData(authData));
             }
         }
