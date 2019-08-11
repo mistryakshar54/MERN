@@ -1,28 +1,55 @@
 import instance from "../../axiosConfig/axiosconfig";
  
-export const dispatchPOST = ( endPoint ,method, actionPayload ) => {
-    console.log("Got a dispatch for following" , endPoint , actionPayload);
+let statusArr = { 
+    401 : "You are not authorized to perform this action" ,
+    500 : "Server error occured. Please try again after some time" 
+  }
+const mapErrorToErrorMessage = (error) => {
+  if (error.response) {
+    return {
+      status: error.response.status,
+      message:
+        statusArr[error.response.status] === undefined
+          ? error.response.data.error
+          : statusArr[error.response.status]
+    };
+  } else {
+    return {
+      status: 500,
+      message: error.message
+    };
+  }
+};
+
+export  async function dispatchPOST ( endPoint, actionPayload ){
+   return instance
+     .post(endPoint + ".json", actionPayload)
+     .then(response => {
+       let responseData = {
+         data: response.data,
+         status : 200
+       };
+       return responseData;
+     })
+     .catch(err => {
+       return mapErrorToErrorMessage(err);
+     });
 }
 
-export  async function dispatchGET ( endPoint, actionPayload ){
+export  async function dispatchGET ( endPoint , queryParams ){
+   let url = queryParams === undefined ? endPoint : endPoint + queryParams;  
    return instance
-      .get(endPoint+".json")
+      .get(url)
       .then(response => {
         let responseData = {
-          data : response.data,
-          status : 200
+          data : response.data
         }
-        debugger;
-        console.log(response);
         return responseData;
       })
       .catch(err => {
         let responseData = {
-          data: err,
-          status: 200
+          data: err.data.response
         };
-        debugger;
-        console.log(err);
         return responseData;
         ;
       });

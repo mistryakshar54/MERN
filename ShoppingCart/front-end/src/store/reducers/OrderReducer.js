@@ -3,18 +3,18 @@ import initialState from "./DefaultState";
 
 const OrderReducer = (stateSlice = initialState.order, action) => {
   switch (action.type) {
-    case "ADD_NEW_ORDER": {
+    case "SET_SELECTED_ORDER": {
       if (action.orderData) {
         return {
           ...stateSlice,
-          currentOrder : action.orderData
+          currentOrder: action.orderData
         };
       }
       return {
         ...stateSlice
-      }
+      };
     }
-    default:{
+    default: {
       return { ...stateSlice };
     }
   }

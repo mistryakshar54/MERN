@@ -1,50 +1,37 @@
 import * as CoreActions from "./CoreActionCreators";
 // import * as axiosInstance from '../../axiosConfig/axiosconfig';
 import axios from "axios";
-
-export const createOrderThunk = () => {
+export const createOrderThunk = (historyData) => {
     return async(dispatch , getState) => {
-        debugger;
-        console.log("State Data ==> " , getState());
+        dispatch( CoreActions.dispatchApiLoading());
         let orderData = {
           orderitems: Object.assign([], getState().MiniCartReducer.cartItems),
           paymentsummary : Object.assign({}, getState().MiniCartReducer.cartSummary),
           userName : getState().AuthReducer.authUser.name,
           userId : getState().AuthReducer.authUser.id,
           createdDate : new Date(),
+          orderNo : 'ORD-'+new Date().getTime().toString().substring(7)
         };
-
-        try{
-
-            let resp = await CoreActions.dispatchGET('orders');
-            debugger;
-            console.log(resp);
+        
+        let resp = await CoreActions.dispatchPOST('orders' , orderData);
+        if(resp.status === 200)
+        {
+            dispatch( CoreActions.dispatchApiSuccess() );
+            dispatch( setSelectedOrder( orderData ) );
+            console.log("Order NO: " , orderData.orderNo);
+            historyData.push("/orders/" + orderData.orderNo);
         }
-        catch(error){
-            debugger;
-            console.log("Error" , error);
+        else
+        {
+            let payload = {
+                status: resp.status,
+                message: resp.message
+            }
+            dispatch(CoreActions.dispatchApiError(payload));
         }
-        // axios
-        //   .post(
-        //     "https://react-shoppingcart-51ab9.firebaseio.com/orders.json",
-        //     orderData
-        //   )
-        //   .then(response => {
-        //     orderData.id = response.data.name;
-        //     dispatch(createOrder(orderData));
-        //   })
-        //   .catch(err => {
-        //     debugger;
-        //   });
+       
     }
 }
-
-export const createOrder = orderData => {
-  return {
-    type: "ADD_NEW_ORDER",
-    orderData
-  };
-};
 
 export const fetchOrdersForUserThunk = () => {
     return (dispatch,getState) => {
@@ -64,4 +51,41 @@ export const fetchOrdersForUser = ( userOrders ) => {
 //get order list
 
 //get order details
+export const fetchOrderDetailsThunk = ( orderId ) => {
 
+    return async (dispatch , getState) => {
+        dispatch( CoreActions.dispatchApiLoading());
+
+        if (getState.OrderReducer.currentOrder && getState.OrderReducer.currentOrder.orderNo === orderId){
+            dispatch( CoreActions.dispatchApiSuccess());
+        }
+        else
+        {
+            debugger;
+            let queryParams = '?orderBy="orderNo"&equalTo="'+orderId+'"'; 
+            let resp = await CoreActions.dispatchGET( 'orders.json' , queryParams );
+            debugger;
+            // if(resp.status === 200)
+            //     {
+            //         dispatch( CoreActions.dispatchApiSuccess() );
+            //         dispatch( createOrder( orderData ) );
+            //         dispatch(fetchOrderDetails());
+            //     }
+            // else
+            //     {
+            //         let payload = {
+            //             status: resp.status,
+            //             message: resp.message
+            //         }
+            //         dispatch(CoreActions.dispatchApiError(payload));
+            //     }
+        } 
+    }
+}
+
+export const setSelectedOrder = ( orderData ) => {
+    return {
+        type : "SET_SELECTED_ORDER",
+        orderData
+    }
+}
