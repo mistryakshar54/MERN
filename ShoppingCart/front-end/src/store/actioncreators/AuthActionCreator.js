@@ -33,6 +33,7 @@ export const openAuthPopupThunk = () => {
       });
   };
 };
+
 export const setAuthData = authData => {
   return {
     type: "AUTH_LOGIN",
@@ -61,6 +62,7 @@ export const logoutThunk = () => {
         window.localStorage.removeItem("authUser");
     }
       dispatch(logoutUser());
+      dispatch(CoreActions.redirectUrlThunk("/"));
   };
 };
 

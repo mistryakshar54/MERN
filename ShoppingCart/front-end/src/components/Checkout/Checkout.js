@@ -11,7 +11,7 @@ import CardDeck from "react-bootstrap/CardDeck";
 class CheckoutComponent extends Component {
   finalizeOrderHandler = () => {
     //TODO: Redirect user if he is not logged in!!
-    this.props.onCheckoutHandler(this.props.history);
+    this.props.onCheckoutHandler();
   };
 
   render() {
@@ -44,7 +44,7 @@ const mapStateToProps = ( state ) => {
 }
 const mapDispatchToProps = ( dispatch ) => {
     return{
-        onCheckoutHandler : (historyData)=> { dispatch( OrderActions.createOrderThunk(historyData) ) }
+        onCheckoutHandler : ()=> { dispatch( OrderActions.createOrderThunk() ) }
     }
 }
 

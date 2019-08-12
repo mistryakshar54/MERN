@@ -1,7 +1,5 @@
 import * as CoreActions from "./CoreActionCreators";
-// import * as axiosInstance from '../../axiosConfig/axiosconfig';
-import axios from "axios";
-export const createOrderThunk = (historyData) => {
+export const createOrderThunk = () => {
     return async(dispatch , getState) => {
         dispatch( CoreActions.dispatchApiLoading());
         let orderData = {
@@ -19,7 +17,7 @@ export const createOrderThunk = (historyData) => {
             dispatch( CoreActions.dispatchApiSuccess() );
             dispatch( setSelectedOrder( orderData ) );
             console.log("Order NO: " , orderData.orderNo);
-            historyData.push("/orders/" + orderData.orderNo);
+            dispatch(CoreActions.redirectUrlThunk("/orders/" + orderData.orderNo));
         }
         else
         {
@@ -49,7 +47,38 @@ export const fetchOrdersForUser = ( userOrders ) => {
 //delete order
 
 //get order list
-
+export const fetchAllUserOrdersThunk = () => {
+     return async (dispatch, getState) => {
+       dispatch(CoreActions.dispatchApiLoading());
+         let queryParams = '?orderBy="userId"&equalTo="' + getState().AuthReducer.authUser.id + '"';
+         let resp = await CoreActions.dispatchGET(
+           "orders.json",
+           queryParams
+         );
+         debugger;
+         // if(resp.status === 200)
+         //     {
+         //         dispatch( CoreActions.dispatchApiSuccess() );
+         //         dispatch( createOrder( orderData ) );
+         //         dispatch(fetchOrderDetails());
+         //     }
+         // else
+         //     {
+         //         let payload = {
+         //             status: resp.status,
+         //             message: resp.message
+         //         }
+         //         dispatch(CoreActions.dispatchApiError(payload));
+         //     }
+       
+     }
+}
+export const setUserOrders = (orderList) => {
+    return{
+        type : "SET_ALL_ORDERS",
+        orderList
+    }
+}
 //get order details
 export const fetchOrderDetailsThunk = ( orderId ) => {
 

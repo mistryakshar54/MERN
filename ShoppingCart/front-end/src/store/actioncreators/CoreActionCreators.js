@@ -87,3 +87,17 @@ export const resetApiStatus = () => {
       type: "RESET_API"
     };
 }
+
+export const setUrl = ( historyData ) =>{
+  return {
+    type: "SET_HISTORY_PROP",
+    historyData
+  };
+}
+
+export const redirectUrlThunk = ( path ) => {
+   return (dispatch, getState) => {
+     let historyData = getState().CoreReducer.appState;
+     historyData.push(path);
+   };
+}
