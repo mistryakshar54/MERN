@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 class OrderDetailsComponent extends Component {
   render() {
     //TODO: Add check for spinner and empty data!!
-    if (this.props.apiStatus.loading === true) {
+    if (this.props.coreData.loading === true) {
       return <h1>Loading Data</h1>;
     }
     else if( !this.props.orderObject)
@@ -90,7 +90,7 @@ class OrderDetailsComponent extends Component {
 const mapStateToProps = state => {
   return {
     orderObject: state.OrderReducer,
-    apiStatus: state.CoreReducer
+    coreData: state.CoreReducer
   };
 };
 // const mapDispatchToProps = ( dispatch ) => {

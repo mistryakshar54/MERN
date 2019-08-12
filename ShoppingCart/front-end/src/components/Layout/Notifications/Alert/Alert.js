@@ -10,14 +10,14 @@ const closeDismissAlert = () => {
     props.onDismissAlertHandler();
 }
 
-if (props.apiStatus.toggleAlert === true) {
+if (props.coreData.toggleAlert === true) {
   return (
     <Alert
       variant="danger"
       onClose={() => closeDismissAlert()}
       dismissible
     >
-      <Alert.Heading>{props.apiStatus.message}</Alert.Heading>
+      <Alert.Heading>{props.coreData.message}</Alert.Heading>
     </Alert>
   );
 }
@@ -29,7 +29,7 @@ else
 
 const mapStateToProps = ( state ) => {
     return {
-      apiStatus: state.CoreReducer
+      coreData: state.CoreReducer
     };
 }
 

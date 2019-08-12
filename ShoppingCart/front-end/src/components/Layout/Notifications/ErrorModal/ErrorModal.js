@@ -5,7 +5,7 @@ const ErrorModalComponent = props => {
     return (
       <Modal
         size="sm"
-        show={props.apiStatus.isErrorModalOpen}
+        show={props.coreData.isErrorModalOpen}
         // onHide={() => setSmShow(false)}
         aria-labelledby="example-modal-sizes-title-sm"
       >
@@ -23,7 +23,7 @@ const ErrorModalComponent = props => {
 
 const mapStateToProps = ( state ) => {
     return {
-      apiStatus: state.CoreReducer
+      coreData: state.CoreReducer
     };
 }
 
