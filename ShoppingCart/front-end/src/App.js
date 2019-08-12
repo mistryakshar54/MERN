@@ -11,7 +11,6 @@ function App() {
     <Provider store={store} >
       <div className="App">
         <Router>
-          
           <AppHeader />
           <AppContent />
           <NotificationComponent/>

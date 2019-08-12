@@ -49,7 +49,7 @@ class AuthComponent extends Component {
 const mapStateToProps = ( state ) => {
     return {
       authData: state.AuthReducer,
-      apiStatus: state.CoreReducer
+      appData: state.CoreReducer
     };
 }
 

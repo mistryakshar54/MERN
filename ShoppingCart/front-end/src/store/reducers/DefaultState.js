@@ -63,16 +63,17 @@ export const initialState = {
            authUser: {},
            expiresAt : 0
          },
-         apiStatus: {
+         core: {
            loadingState: false,
            apiStatus: 200,
            message: "",
            toggleErrorModal : false,
-           toggleAlert : false
+           toggleAlert : false,
+           appState : {}
          },
          order:{
            currentOrder : {},
            orderList : []
-         }
+         },
        };
 export default initialState;
