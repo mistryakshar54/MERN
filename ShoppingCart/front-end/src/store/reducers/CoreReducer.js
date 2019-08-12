@@ -1,6 +1,6 @@
 import initialState from "./DefaultState";
 
-const CoreReducer = (stateSlice = initialState.apiStatus, action) => {
+const CoreReducer = (stateSlice = initialState.core, action) => {
   switch (action.type) {
     case "SUCCESS_API": {
       let successApi = Object.assign({}, stateSlice);
@@ -32,6 +32,12 @@ const CoreReducer = (stateSlice = initialState.apiStatus, action) => {
       resetApi.message = "";
       resetApi.toggleAlert = false;
       return { ...resetApi };
+    }
+    case "SET_HISTORY_PROP": {
+      return {
+        ...stateSlice,
+        appState: action.historyData
+      };
     }
     default:
       return { ...stateSlice };

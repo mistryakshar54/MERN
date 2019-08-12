@@ -14,7 +14,7 @@ const OrderReducer = (stateSlice = initialState.order, action) => {
         ...stateSlice
       };
     }
-    default: {
+     default: {
       return { ...stateSlice };
     }
   }
