@@ -73,7 +73,6 @@ export const logoutUser = () => {
 };
 
 export const checkIsLoggedInThunk = () => {
-  debugger;
     return dispatch => {
         if(window.localStorage && ( window.localStorage.getItem("authUser") !== null ))
         {
