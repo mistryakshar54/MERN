@@ -14,7 +14,19 @@ const OrderReducer = (stateSlice = initialState.order, action) => {
         ...stateSlice
       };
     }
-     default: {
+    case "LOAD_USER_ORDERS": {
+      debugger;
+      if (action.orderList) {
+        return {
+          ...stateSlice,
+          orderList: action.orderList
+        };
+      }
+      return {
+        ...stateSlice
+      };
+    }
+    default: {
       return { ...stateSlice };
     }
   }

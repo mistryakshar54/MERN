@@ -16,7 +16,6 @@ export const createOrderThunk = () => {
         {
             dispatch( CoreActions.dispatchApiSuccess() );
             dispatch( setSelectedOrder( orderData ) );
-            console.log("Order NO: " , orderData.orderNo);
             dispatch(CoreActions.redirectUrlThunk("/orders/" + orderData.orderNo));
         }
         else
@@ -38,10 +37,10 @@ export const fetchOrdersForUserThunk = () => {
 }
 
 export const fetchOrdersForUser = ( userOrders ) => {
-    return{
-        type : "LOAD_USER_ORDERS",
-        payload : userOrders
-    }
+    return {
+      type: "LOAD_USER_ORDERS",
+      orderList: userOrders
+    };
 }
 
 //delete order
@@ -55,22 +54,22 @@ export const fetchAllUserOrdersThunk = () => {
            "orders.json",
            queryParams
          );
-         debugger;
-         // if(resp.status === 200)
-         //     {
-         //         dispatch( CoreActions.dispatchApiSuccess() );
-         //         dispatch( createOrder( orderData ) );
-         //         dispatch(fetchOrderDetails());
-         //     }
-         // else
-         //     {
-         //         let payload = {
-         //             status: resp.status,
-         //             message: resp.message
-         //         }
-         //         dispatch(CoreActions.dispatchApiError(payload));
-         //     }
-       
+         const orderList = [];
+         if(resp.data){
+            for (var dataId in resp.data) {
+              orderList.push(resp.data[dataId]);
+            }
+            dispatch(fetchOrdersForUser(orderList));
+            dispatch(CoreActions.dispatchApiSuccess());
+         }
+         else
+         {
+            let payload = {
+            status: 404,
+            message: "No ordersfetched"
+            };
+            dispatch(CoreActions.dispatchApiError(payload));
+         } 
      }
 }
 export const setUserOrders = (orderList) => {
@@ -84,31 +83,35 @@ export const fetchOrderDetailsThunk = ( orderId ) => {
 
     return async (dispatch , getState) => {
         dispatch( CoreActions.dispatchApiLoading());
-
-        if (getState.OrderReducer.currentOrder && getState.OrderReducer.currentOrder.orderNo === orderId){
+        debugger;
+        if (getState().OrderReducer.currentOrder && getState().OrderReducer.currentOrder.orderNo === orderId){
             dispatch( CoreActions.dispatchApiSuccess());
         }
-        else
-        {
-            debugger;
-            let queryParams = '?orderBy="orderNo"&equalTo="'+orderId+'"'; 
-            let resp = await CoreActions.dispatchGET( 'orders.json' , queryParams );
-            debugger;
-            // if(resp.status === 200)
-            //     {
-            //         dispatch( CoreActions.dispatchApiSuccess() );
-            //         dispatch( createOrder( orderData ) );
-            //         dispatch(fetchOrderDetails());
-            //     }
-            // else
-            //     {
-            //         let payload = {
-            //             status: resp.status,
-            //             message: resp.message
-            //         }
-            //         dispatch(CoreActions.dispatchApiError(payload));
-            //     }
-        } 
+        else{
+            const orderList = getState().OrderReducer.orderList;
+            let matchIndex = -1;
+            orderList.forEach((orderItem,index) => {
+                 if (orderItem.orderNo === orderId) {
+                   matchIndex = index;
+                 }   
+            });
+            if(matchIndex > -1)
+            {
+                debugger;
+                dispatch(setSelectedOrder(orderList[matchIndex]));
+                dispatch( CoreActions.dispatchApiSuccess());
+                dispatch(CoreActions.redirectUrlThunk("/orders/" + orderId));
+
+            }
+            else
+            {
+               let payload = {
+                 status: 404,
+                 message: 'No such order'
+               };
+               dispatch(CoreActions.dispatchApiError(payload));
+            }
+        }
     }
 }
 

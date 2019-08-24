@@ -8,7 +8,7 @@ export const initialState = {
                currency: "Rs",
                description: "Fresh Apples",
                rating: 3.5,
-               image: "images/apple.jpg"
+               image: "images/immortals.jpg"
              },
              {
                id: "1235",
