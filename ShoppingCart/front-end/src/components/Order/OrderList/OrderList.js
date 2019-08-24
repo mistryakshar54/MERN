@@ -8,58 +8,33 @@ class OrderListComponent extends Component {
     this.props.onFetchOrderList();
   }
   render() {
+    const {orderList} = this.props;
     return (
       <Card>
         <Table className="text-centered" responsive>
           <thead>
             <tr>
-              <th>#</th>
               <th>Order No</th>
-              <th>Price</th>
-              <th>Qty</th>
-              <th>Total</th>
-              <th>Remove</th>
+              <th>Order Date</th>
+              <th>Total Items</th>
+              <th>Amount</th>
             </tr>
           </thead>
-          {/* <tbody>
-            {cartItems.map((item, index) => {
+          <tbody>
+            {orderList.map((item, index) => {
               return (
-                <tr key={"ci -" + index}>
-                  <td>{index + 1}</td>
-                  <td>{item.name}</td>
+                <tr key={"ord -" + index}>
+                  <td onClick={()=>this.props.onShowOrderDetails(item.orderNo)}>{item.orderNo}</td>
+                  <td>{item.createdDate}</td>
+                  <td>{item.orderitems.length}</td>
                   <td>
-                    {item.price} {item.currency}
-                  </td>
-                  <td>
-                    <FontAwesomeIcon
-                      onClick={() => addQty(item)}
-                      icon={faPlus}
-                    />
-                    <span
-                      style={{
-                        padding: "0% 10%"
-                      }}
-                    >
-                      {item.qty}
-                    </span>
-                    <FontAwesomeIcon
-                      onClick={() => reduceQty(item, index)}
-                      icon={faMinus}
-                    />
-                  </td>
-                  <td>
-                    {item.price * item.qty} {item.currency}
-                  </td>
-                  <td>
-                    <FontAwesomeIcon
-                      onClick={() => removeItem(item, index)}
-                      icon={faTrash}
-                    />
+                    {item.paymentsummary.totalAmount}{" "}
+                    {item.paymentsummary.currency}
                   </td>
                 </tr>
               );
             })}
-          </tbody> */}
+          </tbody>
         </Table>
       </Card>
     );
@@ -74,10 +49,12 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchOrderList: () => {
       dispatch(OrderActionCreator.fetchAllUserOrdersThunk());
+    },
+    onShowOrderDetails: (orderId) => {
+      dispatch(OrderActionCreator.fetchOrderDetailsThunk(orderId));
     }
   };
 };
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps

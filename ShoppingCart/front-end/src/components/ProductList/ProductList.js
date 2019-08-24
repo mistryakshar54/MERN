@@ -20,7 +20,7 @@ class ProductListComponent extends Component {
     if (this.props.productsList && this.props.productsList.length > 0) {
       return (
         <div className="container-fluid">
-          <div className="d-flex p-2 justify-content-start flex-wrap">
+          <div className="d-flex p-2 justify-content-start flex-wrap product-list">
             {this.props.productsList.map((item, index) => {
               return (
                 <ProductCardComponent

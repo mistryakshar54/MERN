@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 const ProductCardComponent = ( props ) => {
     return (
-      <Card style={{ width: "20rem" }}>
+      <Card className="product-card" style={{ width: "20rem" }}>
         <Card.Img variant="top" src={props.product.image} />
         <Card.Body>
           <label className="col-12 product-name text-left">
