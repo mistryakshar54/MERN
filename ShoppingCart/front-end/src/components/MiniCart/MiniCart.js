@@ -58,7 +58,7 @@ class MiniCartComponent extends Component {
             >
               <Modal.Header closeButton>
                 <Modal.Title id="example-custom-modal-styling-title">
-                  Cart
+                  Shopping Cart
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>

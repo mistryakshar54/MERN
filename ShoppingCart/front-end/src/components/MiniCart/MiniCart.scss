@@ -27,5 +27,41 @@
 	-webkit-transition-delay: 0s;
 	transition-delay: 0s;
     }
+   
+   
     
 }    
+
+ .modal-content{
+        .modal-header{
+            border:0px;
+            padding: 2rem 3.5rem 0rem 2rem;
+        }
+        .modal-body{
+            .table{
+                td, th{
+                    padding: 1rem;
+                    padding-top:25px;
+                    // border-bottom: 1px solid #dee2e6;
+                }
+            }
+        }
+    }
+    .cart-img
+    {
+        height: 75px;
+        width: 75px;
+        border-radius: 50%;
+        margin-top: -15px;
+    }
+    .product-info
+    {
+        display: flex;
+        h4{
+            padding-left:20px; 
+        }
+    }
+    .cart-icons
+    {
+        font-size: 0.7rem;
+    }

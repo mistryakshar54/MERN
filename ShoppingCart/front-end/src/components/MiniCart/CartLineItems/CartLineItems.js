@@ -3,16 +3,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrash,
   faPlus,
-  faMinus
+  faMinus,
+  faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import Table from "react-bootstrap/Table";
 
 const CartLineItems = ( props ) => {
     let { cartItems, addQty, reduceQty, removeItem } = props;
+    let cartTotal=0;
     return (
       <Fragment>
         <Table className="text-centered" responsive>
-          <thead>
+          {/* <thead>
             <tr>
               <th>#</th>
               <th>Product</th>
@@ -21,48 +23,58 @@ const CartLineItems = ( props ) => {
               <th>Total</th>
               <th>Remove</th>
             </tr>
-          </thead>
+          </thead> */}
           <tbody>
             {cartItems.map((item, index) => {
               return (
                 <tr key={"ci -" + index}>
-                  <td>{index + 1}</td>
-                  <td>{item.name}</td>
-                  <td>
-                    {item.price} {item.currency}
+                  <td className="product-info">
+                    <img
+                      src={item.image}
+                      className="cart-img"
+                      alt={item.name}
+                    />
+                    <h4 className="header-text-content">{item.name}</h4>
                   </td>
                   <td>
                     <FontAwesomeIcon
-                      onClick={() => addQty(item)}
-                      icon={faPlus}
+                      className="cart-icons"
+                      onClick={() => reduceQty(item, index)}
+                      icon={faMinus}
                     />
                     <span
                       style={{
-                        padding: "0% 10%"
+                        padding: "0% 17%"
                       }}
                     >
                       {item.qty}
                     </span>
                     <FontAwesomeIcon
-                      onClick={() => reduceQty(item, index)}
-                      icon={faMinus}
+                      className="cart-icons"
+                      onClick={() => addQty(item)}
+                      icon={faPlus}
                     />
                   </td>
                   <td>
-                    {item.price * item.qty} {item.currency}
+                    {(cartTotal = item.price * item.qty)}
+                    {item.currency}
                   </td>
                   <td>
                     <FontAwesomeIcon
                       onClick={() => removeItem(item, index)}
-                      icon={faTrash}
+                      icon={faTimes}
                     />
                   </td>
                 </tr>
               );
             })}
+            <tr>
+              <td colSpan="4" className="text-right">
+                <h4>Total : {cartTotal}</h4>
+              </td>
+            </tr>
           </tbody>
         </Table>
-
       </Fragment>
     );
 }
