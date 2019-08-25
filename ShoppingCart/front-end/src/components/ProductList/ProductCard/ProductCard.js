@@ -3,27 +3,35 @@ import Card from "react-bootstrap/Card";
 import Button from 'react-bootstrap/Button';
 import "./ProductCard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faStar } from "@fortawesome/free-solid-svg-icons";
 const ProductCardComponent = ( props ) => {
     return (
       <Card className="product-card" style={{ width: "20rem" }}>
         <Card.Img variant="top" src={props.product.image} />
         <Card.Body>
-          <label className="col-12 product-name text-left">
-            {props.product.name}
-          </label>
-          <label className="col-12 product-price text-left">
-            {props.product.price}&nbsp;{props.product.currency}
-            {/* <span className="text-muted">kg</span> */}
-          </label>
-          <Button
-            onClick={() => props.onAddToCart(props.product)}
-            variant="danger"
-            className="col-12"
-          >
-            <FontAwesomeIcon icon={faShoppingCart} />&nbsp;
-            Add to Cart
-          </Button>
+          <div className="col-12 product-label">
+            <label className="col-7 product-name text-left">
+              {props.product.name}
+            </label>
+            <label className="col-5 product-price text-right">
+              {props.product.price}&nbsp;{props.product.currency}
+              {/* <span className="text-muted">kg</span> */}
+            </label>
+          </div>
+          <div className="col-12">
+            <label className="col-6 product-rating text-left">
+              <FontAwesomeIcon icon={faStar} />
+              {props.product.rating}
+            </label>
+            <Button
+              onClick={() => props.onAddToCart(props.product)}
+              variant="danger"
+              className="col-6"
+            >
+              <FontAwesomeIcon icon={faShoppingCart} />
+              &nbsp; Add to Cart
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     );

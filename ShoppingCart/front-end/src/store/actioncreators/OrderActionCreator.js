@@ -55,20 +55,19 @@ export const fetchAllUserOrdersThunk = () => {
            queryParams
          );
          const orderList = [];
-         if(resp.data){
-            for (var dataId in resp.data) {
-              orderList.push(resp.data[dataId]);
-            }
-            dispatch(fetchOrdersForUser(orderList));
-            dispatch(CoreActions.dispatchApiSuccess());
-         }
-         else
-         {
-            let payload = {
-            status: 404,
-            message: "No ordersfetched"
-            };
-            dispatch(CoreActions.dispatchApiError(payload));
+         debugger;
+         if (resp.data && Object.keys(resp.data).length > 0) {
+           for (var dataId in resp.data) {
+             orderList.push(resp.data[dataId]);
+           }
+           dispatch(fetchOrdersForUser(orderList));
+           dispatch(CoreActions.dispatchApiSuccess());
+         } else {
+           let payload = {
+             status: 404,
+             message: "No Orders Fetched"
+           };
+           dispatch(CoreActions.dispatchApiError(payload));
          } 
      }
 }

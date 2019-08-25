@@ -4,6 +4,7 @@ import CardDeck from "react-bootstrap/CardDeck";
 import { connect } from "react-redux";
 import * as ProductActionCreator from "../../store/actioncreators/ProductActionCreator";
 import * as MiniCartActionCreator from "../../store/actioncreators/MiniCartActionCreator";
+import Loader from "../Layout/Loader/Loader";
 
 
 class ProductListComponent extends Component {
@@ -12,30 +13,27 @@ class ProductListComponent extends Component {
   }
 
   addToCartHandler = ( item ) => {
-    console.log("ITem" , item);
     this.props.onAddToCart( item );
   }
 
   render() {
-    if (this.props.productsList && this.props.productsList.length > 0) {
       return (
         <div className="container-fluid">
-          <div className="d-flex p-2 justify-content-start flex-wrap product-list">
-            {this.props.productsList.map((item, index) => {
-              return (
-                <ProductCardComponent
-                  product={item}
-                  key={"prod-" + index}
-                  onAddToCart={this.addToCartHandler}
-                />
-              );
-            })}
-          </div>
+          <Loader dataLoaded={this.props.productsList.length > 0 ? true : false}>
+            <div className="d-flex p-2 justify-content-start flex-wrap product-list">
+              {this.props.productsList.map((item, index) => {
+                return (
+                  <ProductCardComponent
+                    product={item}
+                    key={"prod-" + index}
+                    onAddToCart={this.addToCartHandler}
+                  />
+                );
+              })}
+            </div>
+          </Loader>
         </div>
       );
-    } else {
-      return <h1>Loading..</h1>;
-    }
   }
 }
 
