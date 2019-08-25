@@ -11,7 +11,7 @@ class OrderDetailsComponent extends Component {
     if (this.props.coreData.loading === true) {
       return <h1>Loading Data</h1>;
     }
-    else if( !this.props.orderObject)
+    else if( !this.props.orderObject && !this.props.orderObject.currentOrder)
     {
         return <h1>No data received</h1>;
     }
