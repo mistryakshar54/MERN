@@ -42,13 +42,7 @@ const CartLineItems = ( props ) => {
                       onClick={() => reduceQty(item, index)}
                       icon={faMinus}
                     />
-                    <span
-                      style={{
-                        padding: "0% 17%"
-                      }}
-                    >
-                      {item.qty}
-                    </span>
+                    <span className="mini-cart-qty">{item.qty}</span>
                     <FontAwesomeIcon
                       className="cart-icons"
                       onClick={() => addQty(item)}

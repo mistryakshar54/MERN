@@ -45,7 +45,7 @@ class MiniCartComponent extends Component {
               className="checkout"
             >
               <FontAwesomeIcon icon={faShoppingBag} />
-              <Badge variant="primary">
+              <Badge variant="danger">
                 {this.props.cartObject.cartItems.length}
               </Badge>
             </div>

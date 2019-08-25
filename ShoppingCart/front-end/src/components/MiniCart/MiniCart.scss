@@ -33,6 +33,7 @@
 }    
 
  .modal-content{
+        background-color: #f2f4f5!important;
         .modal-header{
             border:0px;
             padding: 2rem 3.5rem 0rem 2rem;
@@ -64,4 +65,9 @@
     .cart-icons
     {
         font-size: 0.7rem;
+    }
+    .mini-cart-qty{
+        padding: 5px 10px;
+        margin: 0px 14px;
+        border: 1px solid black;
     }

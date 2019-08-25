@@ -11,6 +11,7 @@ const closeDismissAlert = () => {
 }
 
 if (props.coreData.toggleAlert === true) {
+  props.onAutoDismissAlertHandler();
   return (
     <Alert
       variant="danger"
@@ -35,7 +36,8 @@ const mapStateToProps = ( state ) => {
 
 const mapDispatchToProps = ( dispatch ) => {
     return{
-        onDismissAlertHandler : () => { dispatch( CoreActionCreators.dispatchCloseAlertThunk() ) }
+        onDismissAlertHandler : () => { dispatch( CoreActionCreators.dispatchCloseAlertThunk() ) },
+        onAutoDismissAlertHandler : () => { dispatch( CoreActionCreators.dispatchAutoCloseAlertThunk() ) }
     }
 }
 

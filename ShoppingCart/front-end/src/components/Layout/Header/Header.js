@@ -7,7 +7,7 @@ import MiniCartComponent from '../../MiniCart/MiniCart';
 import AuthComponent from '../../AuthComponent/AuthComponent';
 import { connect } from "react-redux";
 import * as CoreActions from '../../../store/actioncreators/CoreActionCreators';
-import { withRouter } from "react-router-dom";
+import { NavLink,withRouter } from "react-router-dom";
 
 class AppHeader extends Component{
 
@@ -18,19 +18,14 @@ class AppHeader extends Component{
     render(){
       return (
         <Navbar collapseOnSelect expand="lg" variant="light">
-          <Navbar.Brand>
-            <LinkContainer to="/">
-              <Nav.Link> Shoppie</Nav.Link>
-            </LinkContainer>
-          </Navbar.Brand>
+          <NavLink className="navbar-brand" to="/">
+            Furnify
+          </NavLink>        
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto" />
-            <Nav><AuthComponent /></Nav>
             <Nav>
-              <LinkContainer to="/checkout">
-                <Nav.Link>Checkout</Nav.Link>
-              </LinkContainer>
+              <AuthComponent />
             </Nav>
             <Nav>
               <Nav.Link href="#">
