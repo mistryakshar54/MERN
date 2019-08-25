@@ -3,15 +3,24 @@
     padding: 1%;
     background-color: #f8f9fa;
    
-    .btn {
-        border-radius: 0px;
-        padding: 3% 0%;
-        font-weight: bold;
-        font-size: 1.2rem;
-    }
+    .product-card {
+        .btn {
+               border-radius: 50px;
+                padding: 3% 1%;
+                margin: 10px 0px;
+                margin-right: -10px;
+                font-weight: bold;
+                font-size: 1rem;
+                box-shadow: 0px 1px 4px 0px #b7b7b7;
+        }
+    }    
     .card{
         .card-body{
             padding: 0%;
         }
+    }
+    .content-padding
+    {
+        padding: 5%;
     }
 }

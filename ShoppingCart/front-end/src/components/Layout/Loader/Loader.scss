@@ -1,0 +1,14 @@
+.Spinner
+{
+    width:100%;
+    align-content: center;
+    color: #dc3545;
+    padding: 3%;
+
+    .spinner-border {
+    width: 4rem;
+    height: 4rem;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    }
+}

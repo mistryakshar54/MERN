@@ -13,6 +13,12 @@
   }
 }
 
+body{
+  background-color: #f8f9fa!important;
+}
+#root {
+    min-height: 100vh;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;

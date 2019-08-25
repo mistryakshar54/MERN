@@ -3,4 +3,22 @@
     padding: 1.2% 2%!important;
     background-color: #fff!important;
     box-shadow: 1px -1px 5px #444444; 
+
+    
+}
+.navbar-light .navbar-nav .nav-link {
+        color: #000!important;
+        font-family: Roboto;
+        font-weight: 700;
+        font-size: 1.2rem;
+}
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: rgb(220, 53, 69)!important;
+}
+.navbar-brand{
+    font-family: 'Pacifico', cursive;
+    color: rgb(220, 53, 69)!important;
+    font-size: 2rem!important;
+    font-weight: lighter;
+    margin-left: 40px;
 }
