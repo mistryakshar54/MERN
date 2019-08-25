@@ -2,7 +2,8 @@ import instance from "../../axiosConfig/axiosconfig";
  
 let statusArr = { 
     401 : "You are not authorized to perform this action" ,
-    500 : "Server error occured. Please try again after some time" 
+    500 : "Server error occured. Please try again after some time",
+    404 : "No such data" 
   }
 const mapErrorToErrorMessage = (error) => {
   if (error.response) {
@@ -79,6 +80,17 @@ export const dispatchApiLoading = ( ) => {
 export const dispatchCloseAlertThunk = () => {
     return dispatch => {
         dispatch(resetApiStatus());
+    }
+}
+export const dispatchAutoCloseAlertThunk = () => {
+    return (dispatch,getState) => {
+        setTimeout(
+          ( )=>{
+            if( getState().CoreReducer.toggleAlert === true){
+              dispatch(resetApiStatus());
+            }
+           }
+          , 3000);
     }
 }
 

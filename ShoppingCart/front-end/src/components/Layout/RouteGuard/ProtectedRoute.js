@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from "react-router-dom";
 import {connect} from 'react-redux';
+import * as AuthActionCreators from "../../../store/actioncreators/AuthActionCreator";
+
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-  return (
+    return (
       <Route
-      {...rest}
-      render={props =>
-        rest.authStatus &&
-        rest.authStatus.isAuthenticated &&
-        rest.authStatus.isAuthenticated === true ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
-  );
+        {...rest}
+        render={props =>
+          AuthActionCreators.isAuthenticated() === true ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: props.location }
+              }}
+            />
+          )
+        }
+      />
+    );
 };
 
 const mapStateToProps = (state) => {

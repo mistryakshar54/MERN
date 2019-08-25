@@ -4,7 +4,7 @@ import {
 } from "../../firebaseConfig/FirebaseConfig";
 import * as CoreActions from "./CoreActionCreators";
 
-export const openAuthPopupThunk = () => {
+export const openAuthPopupThunk = (redirectTo = null) => {
   return dispatch => {
     firebaseAuth()
       .signInWithPopup(authProvider)
@@ -24,6 +24,11 @@ export const openAuthPopupThunk = () => {
         }
         dispatch(autoLogoutThunk(expiresAt - new Date().getTime()));
         dispatch(setAuthData(authData));
+
+        if(redirectTo)
+        {
+          dispatch(CoreActions.redirectUrlThunk(redirectTo));
+        }
       })
       .catch(function(error) {
         // Handle Errors here.
@@ -83,5 +88,14 @@ export const checkIsLoggedInThunk = () => {
                dispatch(setAuthData(authData));
             }
         }
+    }
+}
+
+export const isAuthenticated = () => {
+    if(window.localStorage && ( window.localStorage.getItem("authUser") !== null )){
+      return true;
+    }else
+    {
+      return false;
     }
 }

@@ -3,48 +3,48 @@ export const initialState = {
            productsList: [
              {
                id: "1234",
-               name: "Apple",
+               name: "Sofa",
                price: 50000,
                currency: "Rs",
                description: "Fresh Apples",
                rating: 3.5,
-               image: "images/immortals.jpg"
+               image: "images/sofa.jpg"
              },
              {
                id: "1235",
-               name: "Banana",
+               name: "Study Table",
                price: 50000,
                currency: "Rs",
                description: "Fresh Bananas",
                rating: 3.5,
-               image: "images/banana.jpg"
+               image: "images/studytable.jpg"
              },
              {
                id: "1236",
-               name: "Orange",
+               name: "Bed",
                price: 50000,
                currency: "Rs",
                description: "Fresh Oranges",
                rating: 3.5,
-               image: "images/orange.jpg"
+               image: "images/queen_size_bed.jpg"
              },
              {
                id: "1237",
-               name: "Peach",
+               name: "Wardrobe",
                price: 50000,
                currency: "Rs",
                description: "Fresh Peach",
                rating: 3.5,
-               image: "images/peach.jpg"
+               image: "images/wardrobe.jpg"
              },
              {
                id: "1237",
-               name: "Pear",
+               name: "Recliner",
                price: 50000,
                currency: "Rs",
                description: "Fresh Pear",
                rating: 3.5,
-               image: "images/pear.jpg"
+               image: "images/recliner.jpg"
              }
            ]
          },
@@ -61,19 +61,19 @@ export const initialState = {
            authToken: null,
            isAuthenticated: false,
            authUser: {},
-           expiresAt : 0
+           expiresAt: 0
          },
          core: {
            loadingState: false,
            apiStatus: 200,
            message: "",
-           toggleErrorModal : false,
-           toggleAlert : false,
-           appState : {}
+           toggleErrorModal: false,
+           toggleAlert: false,
+           appState: {}
          },
-         order:{
-           currentOrder : {},
-           orderList : []
-         },
+         order: {
+           currentOrder: {},
+           orderList: []
+         }
        };
 export default initialState;

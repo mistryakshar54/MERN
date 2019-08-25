@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as AuthActionCreators from '../../store/actioncreators/AuthActionCreator';
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import './AuthComponent.scss';
 
@@ -27,13 +28,10 @@ class AuthComponent extends Component {
               title={this.props.authData.authUser.given_name}
               id="basic-nav-dropdown"
             >
-              <NavDropdown.Item
-                href="#"
-                onClick={this.onRedirectToOrdersHandler}
-              >
+              <NavDropdown.Item onClick={this.onRedirectToOrdersHandler}>
                 Orders
               </NavDropdown.Item>
-              <NavDropdown.Item href="#" onClick={this.props.onLogoutHandler}>
+              <NavDropdown.Item onClick={this.props.onLogoutHandler}>
                 Logout
               </NavDropdown.Item>
             </NavDropdown>
