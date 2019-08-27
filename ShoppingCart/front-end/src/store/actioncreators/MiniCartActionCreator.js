@@ -5,10 +5,10 @@ export const addProductToCartThunk = ( productData ) => {
         let itemData = {
           name: productData.name,
           qty: 1,
-          id: productData.id,
-          image : productData.image,
-          price : productData.price,
-          currency : productData.currency
+          productId: productData.productId,
+          image: productData.image,
+          price: productData.price,
+          currency: productData.currency
         }; 
         // CoreActions.dispatchPromise( 'sample end point' , addProductToCart( productData) );
         dispatch(addProductToCart(itemData));

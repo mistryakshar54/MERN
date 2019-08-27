@@ -8,7 +8,7 @@ const MiniCartReducer = (stateSlice = initialState.cart, action) => {
         let cartArr = Object.assign([], stateSlice.cartItems);
         let matchIndex = -1;
         cartArr.forEach((item, index) => {
-          if (item.id === action.payload.id) {
+          if (item.productId === action.payload.productId) {
             matchIndex = index;
           }
         });
