@@ -1,12 +1,29 @@
 import * as CoreActions from "./CoreActionCreators";
 
 export const fetchAllProductsThunk = () => {
-   return dispatch => {
-       dispatch( fetchAllProducts() );
-   }
-}
-export const fetchAllProducts = () => {
-    return {
-      type: "FETCH_ALL_PRODUCTS"
-    };
-}
+           return async (dispatch, getState) => {
+             dispatch(CoreActions.dispatchApiLoading());
+             let resp = await CoreActions.dispatchGET("products.json");
+             const productsList = [];
+             debugger;
+             if (resp.data && Object.keys(resp.data).length > 0) {
+               for (var dataId in resp.data) {
+                 productsList.push(resp.data[dataId]);
+               }
+               dispatch(fetchAllProducts(productsList));
+               dispatch(CoreActions.dispatchApiSuccess());
+             } else {
+               let payload = {
+                 status: 404,
+                 message: "No Products Fetched"
+               };
+               dispatch(CoreActions.dispatchApiError(payload));
+             }
+           };
+         };
+export const fetchAllProducts = productData => {
+         return {
+           type: "FETCH_ALL_PRODUCTS",
+           productsList: productData
+         };
+       };
