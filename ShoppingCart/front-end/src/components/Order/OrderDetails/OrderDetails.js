@@ -19,7 +19,7 @@ class OrderDetailsComponent extends Component {
       let { orderitems, paymentsummary } = this.props.orderObject.currentOrder;
       return (
         <React.Fragment>
-          <h1>Checkout</h1>
+          <h1>Order Details</h1>
           <CardDeck>
             <Col>
               <Card>

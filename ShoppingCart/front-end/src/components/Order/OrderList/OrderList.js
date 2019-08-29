@@ -12,42 +12,45 @@ class OrderListComponent extends Component {
   render() {
     const {orderList} = this.props;
     return (
-      <Card>
-        <Loader dataLoaded={orderList.length > 0 ? true : false }>
-          <Table className="text-centered" responsive>
-            <thead>
-              <tr>
-                <th>Order No</th>
-                <th>Order Date</th>
-                <th>Total Items</th>
-                <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orderList.map((item, index) => {
-                return (
-                  <tr key={"ord -" + index}>
-                    <td
-                      className="itemLink"
-                      onClick={() =>
-                        this.props.onShowOrderDetails(item.orderNo)
-                      }
-                    >
-                      {item.orderNo}
-                    </td>
-                    <td>{item.createdDate}</td>
-                    <td>{item.orderitems.length}</td>
-                    <td>
-                      {item.paymentsummary.totalAmount}{" "}
-                      {item.paymentsummary.currency}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        </Loader>
-      </Card>
+      <React.Fragment>
+        <h1>Your Orders</h1>
+        <Card>
+          <Loader dataLoaded={orderList.length > 0 ? true : false}>
+            <Table className="text-centered" responsive>
+              <thead>
+                <tr>
+                  <th>Order No</th>
+                  <th>Order Date</th>
+                  <th>Total Items</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orderList.map((item, index) => {
+                  return (
+                    <tr key={"ord -" + index}>
+                      <td
+                        className="itemLink"
+                        onClick={() =>
+                          this.props.onShowOrderDetails(item.orderNo)
+                        }
+                      >
+                        {item.orderNo}
+                      </td>
+                      <td>{item.createdDate}</td>
+                      <td>{item.orderitems.length}</td>
+                      <td>
+                        {item.paymentsummary.totalAmount}{" "}
+                        {item.paymentsummary.currency}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </Loader>
+        </Card>
+      </React.Fragment>
     );
   }
 }
