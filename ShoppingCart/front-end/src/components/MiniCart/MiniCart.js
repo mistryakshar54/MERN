@@ -40,10 +40,7 @@ class MiniCartComponent extends Component {
     render(){
         return (
           <div className={this.state.miniCartClass}>
-            <div
-              onClick={() => this.setShow(true)}
-              className="checkout"
-            >
+            <div onClick={() => this.setShow(true)} className="checkout">
               <FontAwesomeIcon icon={faShoppingBag} />
               <Badge variant="danger">
                 {this.props.cartObject.cartItems.length}
@@ -70,10 +67,26 @@ class MiniCartComponent extends Component {
                       reduceQty={this.props.onRemoveQtyHandler}
                       removeItem={this.props.onDeleteItemHandler}
                     />
-                      <Button variant="outline-dark" onClick={this.redirectToCheckout} >Proceed To Checkout</Button> 
+                    <div className="col-12 display-flex">
+                      <div className="col-6">
+                        <label
+                          onClick={() => this.setShow(false)}
+                          className="back-to-shopping"
+                        >
+                          Back to Shopping
+                        </label>
+                      </div>
+                      <div className="col-6">
+                        <Button
+                          className="btn btn-danger checkout-btn"
+                          onClick={this.redirectToCheckout}
+                        >
+                          Proceed To Checkout
+                        </Button>
+                      </div>
+                    </div>
                   </React.Fragment>
-
-                ) : ( 
+                ) : (
                   <h1>Empty Cart :(</h1>
                 )}
               </Modal.Body>

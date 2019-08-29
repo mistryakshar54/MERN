@@ -71,3 +71,27 @@
         margin: 0px 14px;
         border: 1px solid black;
     }
+    .checkout-btn
+    {
+        float: right;
+    }
+    .back-to-shopping
+    {
+        color: black;
+        font-size: 1.2rem;
+        font-weight: bolder;
+        cursor: pointer;
+        transition: all ease-in 0.2s;
+    }
+    .back-to-shopping:hover
+    {
+        color: #dc3545;
+    }
+    .display-flex
+    {
+        display: flex;
+    }
+    .padding-right
+    {
+        padding-right: 30px!important;
+    }

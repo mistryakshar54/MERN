@@ -63,8 +63,10 @@ const CartLineItems = ( props ) => {
               );
             })}
             <tr>
-              <td colSpan="4" className="text-right">
-                <h4>Total : {cartTotal}</h4>
+              <td colSpan="4" className="text-right padding-right">
+                <h4>
+                  Total : {cartTotal} {cartItems[0].currency}
+                </h4>
               </td>
             </tr>
           </tbody>
