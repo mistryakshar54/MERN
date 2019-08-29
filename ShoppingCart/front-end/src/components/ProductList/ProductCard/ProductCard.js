@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import "./ProductCard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faStar } from "@fortawesome/free-solid-svg-icons";
+
 const ProductCardComponent = ( props ) => {
     return (
       <Card className="product-card" style={{ width: "20rem" }}>

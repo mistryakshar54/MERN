@@ -2,6 +2,8 @@ import * as CoreActions from "./CoreActionCreators";
 
 export const addProductToCartThunk = ( productData ) => {
     return dispatch => {
+      dispatch(CoreActions.dispatchApiLoading());
+             
         let itemData = {
           name: productData.name,
           qty: 1,
@@ -10,9 +12,10 @@ export const addProductToCartThunk = ( productData ) => {
           price: productData.price,
           currency: productData.currency
         }; 
-        // CoreActions.dispatchPromise( 'sample end point' , addProductToCart( productData) );
         dispatch(addProductToCart(itemData));
         dispatch( updateCartSummary() );
+        dispatch(CoreActions.dispatchApiSuccess());
+             
     }
 }
 
