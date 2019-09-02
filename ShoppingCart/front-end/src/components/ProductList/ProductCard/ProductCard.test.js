@@ -34,4 +34,6 @@ it("Calls `onAddToCart()` on Button Click" , () => {
         .at(1)
         .simulate("click");
     expect(onAddToCart).toHaveBeenCalledTimes(1);
+      expect(cardComponent).toMatchSnapshot();
+
 });

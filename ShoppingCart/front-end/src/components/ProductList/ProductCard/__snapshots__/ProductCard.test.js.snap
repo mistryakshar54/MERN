@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Calls \`onAddToCart()\` on Button Click 1`] = `ReactWrapper {}`;
+
 exports[`Renders product card component correctly  1`] = `ReactWrapper {}`;
 
 exports[`Renders the Product Name Correctly  1`] = `ReactWrapper {}`;
