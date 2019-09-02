@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const ProductCardComponent = ( props ) => {
+  const onAddToCartHandler = (productData) =>{
+    props.onAddToCart(productData);
+  }
     return (
       <Card className="product-card" style={{ width: "20rem" }}>
         <Card.Img variant="top" src={props.product.image} />
@@ -25,9 +28,10 @@ const ProductCardComponent = ( props ) => {
               {props.product.rating}
             </label>
             <Button
-              onClick={() => props.onAddToCart(props.product)}
+              onClick={() => onAddToCartHandler(props.product)}
               variant="danger"
-              className="col-6"
+              id="addToCartBtn"
+              className="col-6 add-to-cart"
             >
               <FontAwesomeIcon icon={faShoppingCart} />
               &nbsp; Add to Cart
