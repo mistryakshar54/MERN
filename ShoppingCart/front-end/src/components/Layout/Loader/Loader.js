@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import ErrorComponent from '../Error/Error';
 import Spinner from "react-bootstrap/Spinner";
+
 import './Loader.scss';
-class Loader extends Component{
+export class Loader extends Component{
     render(){
-        debugger;
         let { dataLoaded } = this.props;
+        console.log( this.props, this.props.apiData );
         if( this.props.apiData.loadingState === true ){
             return (
               <div className="Spinner">
