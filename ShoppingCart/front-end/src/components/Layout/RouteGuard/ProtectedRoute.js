@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, withRouter } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as AuthActionCreators from "../../../store/actioncreators/AuthActionCreator";
 
@@ -29,4 +29,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ProtectedRoute);
+export default withRouter(connect(mapStateToProps)(ProtectedRoute));

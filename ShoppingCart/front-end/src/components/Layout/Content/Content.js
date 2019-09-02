@@ -15,7 +15,11 @@ const AppContent = (props)=>{
       <div className="app-content container-fluid">
         <Switch>
           <Route path="/" exact component={ProductListComponent} />
-          <Route path="/checkout" exact component={CheckoutComponent} />
+          <ProtectedRoute
+            path="/checkout"
+            exact
+            component={CheckoutComponent}
+          />
           <Route path="/login" exact component={NotifyLoginComponent} />
           <ProtectedRoute path="/orders" exact component={OrderListComponent} />
           <ProtectedRoute
