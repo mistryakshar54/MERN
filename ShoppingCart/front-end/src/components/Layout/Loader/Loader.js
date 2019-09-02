@@ -7,7 +7,6 @@ import './Loader.scss';
 export class Loader extends Component{
     render(){
         let { dataLoaded } = this.props;
-        console.log( this.props, this.props.apiData );
         if( this.props.apiData.loadingState === true ){
             return (
               <div className="Spinner">

@@ -55,7 +55,6 @@ export const fetchAllUserOrdersThunk = () => {
            queryParams
          );
          const orderList = [];
-         debugger;
          if (resp.data && Object.keys(resp.data).length > 0) {
            for (var dataId in resp.data) {
              orderList.push(resp.data[dataId]);
@@ -82,7 +81,6 @@ export const fetchOrderDetailsThunk = ( orderId ) => {
 
     return async (dispatch , getState) => {
         dispatch( CoreActions.dispatchApiLoading());
-        debugger;
         if (getState().OrderReducer.currentOrder && getState().OrderReducer.currentOrder.orderNo === orderId){
             dispatch( CoreActions.dispatchApiSuccess());
         }
@@ -96,7 +94,6 @@ export const fetchOrderDetailsThunk = ( orderId ) => {
             });
             if(matchIndex > -1)
             {
-                debugger;
                 dispatch(setSelectedOrder(orderList[matchIndex]));
                 dispatch( CoreActions.dispatchApiSuccess());
                 dispatch(CoreActions.redirectUrlThunk("/orders/" + orderId));

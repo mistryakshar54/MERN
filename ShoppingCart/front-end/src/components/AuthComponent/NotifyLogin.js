@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 
 class NotifyLoginComponent extends Component {
   render() {
-      debugger;
       return (
         <Col>
           <Card>

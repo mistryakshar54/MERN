@@ -5,7 +5,6 @@ export const fetchAllProductsThunk = () => {
              dispatch(CoreActions.dispatchApiLoading());
              let resp = await CoreActions.dispatchGET("products.json");
              const productsList = [];
-             debugger;
              if (resp.data && Object.keys(resp.data).length > 0) {
                for (var dataId in resp.data) {
                  productsList.push(resp.data[dataId]);
