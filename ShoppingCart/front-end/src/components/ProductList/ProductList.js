@@ -7,7 +7,7 @@ import * as MiniCartActionCreator from "../../store/actioncreators/MiniCartActio
 import Loader from "../Layout/Loader/Loader";
 
 
-class ProductListComponent extends Component {
+export class ProductListComponent extends Component {
   componentDidMount() {
     this.props.onFetchProductsList();
   }
