@@ -1,7 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Loader Component Test Renders Children if the results are fetched correctly 1`] = `ReactWrapper {}`;
+exports[`Loader Component Test Renders Children if the results are fetched correctly 1`] = `
+"<Loader dataLoaded={true} apiData={{...}}>
+  <div id=\\"dataToLoad\\">
+    Data Loaded!
+  </div>
+</Loader>"
+`;
 
-exports[`Loader Component Test Renders Loader if the api is still loading 1`] = `ReactWrapper {}`;
+exports[`Loader Component Test Renders Loader if the api is still loading 1`] = `
+"<Loader dataLoaded={false} apiData={{...}}>
+  <div className=\\"Spinner\\">
+    <Spinner animation=\\"border\\" size=\\"lg\\" role=\\"status\\">
+      <div role=\\"status\\" className=\\"spinner-border spinner-border-lg\\">
+        <span className=\\"sr-only\\">
+          Loading...
+        </span>
+      </div>
+    </Spinner>
+  </div>
+</Loader>"
+`;
 
-exports[`Loader Component Test Renders the component correctly 1`] = `ReactWrapper {}`;
+exports[`Loader Component Test Renders the component correctly 1`] = `
+"<Loader dataLoaded={false} apiData={{...}}>
+  <div className=\\"Spinner\\">
+    <Spinner animation=\\"border\\" size=\\"lg\\" role=\\"status\\">
+      <div role=\\"status\\" className=\\"spinner-border spinner-border-lg\\">
+        <span className=\\"sr-only\\">
+          Loading...
+        </span>
+      </div>
+    </Spinner>
+  </div>
+</Loader>"
+`;

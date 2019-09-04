@@ -29,14 +29,14 @@ describe("Loader Component Test", () => {
     it("Renders the component correctly", () => {
         
         const wrapper = createComponent(props);
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.debug()).toMatchSnapshot();
     });
 
     it("Renders Loader if the api is still loading", () => {
         props.apiData.loadingState = true;
         const wrapper = createComponent(props);
         expect(wrapper.exists(".Spinner")).toBe(true);
-        expect(wrapper).toMatchSnapshot();   
+        expect(wrapper.debug()).toMatchSnapshot();   
     });
 
     it("Renders Children if the results are fetched correctly", () => {
@@ -44,6 +44,6 @@ describe("Loader Component Test", () => {
       props.dataLoaded = true;
       const wrapper = createComponentWithChildren(props);
       expect(wrapper.find("#dataToLoad").text()).toEqual("Data Loaded!");
-      expect(wrapper).toMatchSnapshot();
+      expect(wrapper.debug()).toMatchSnapshot();
     });
 });
