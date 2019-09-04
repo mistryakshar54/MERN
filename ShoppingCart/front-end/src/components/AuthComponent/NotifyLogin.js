@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as AuthActionCreators from "../../store/actioncreators/AuthActionCreator";
-import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
-import "./NotifyLogin.scss";
 class NotifyLoginComponent extends Component {
   render() {
     return (
