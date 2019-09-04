@@ -85,27 +85,56 @@ export const fetchOrderDetailsThunk = ( orderId ) => {
             dispatch( CoreActions.dispatchApiSuccess());
         }
         else{
-            const orderList = getState().OrderReducer.orderList;
-            let matchIndex = -1;
-            orderList.forEach((orderItem,index) => {
-                 if (orderItem.orderNo === orderId) {
-                   matchIndex = index;
-                 }   
-            });
-            if(matchIndex > -1)
-            {
-                dispatch(setSelectedOrder(orderList[matchIndex]));
-                dispatch( CoreActions.dispatchApiSuccess());
+            let orderList = getState().OrderReducer.orderList;
+            if(orderList.length === 0){
+              let queryParams =
+                '?orderBy="userId"&equalTo="' +
+                getState().AuthReducer.authUser.id +
+                '"';
+              let resp = await CoreActions.dispatchGET(
+                "orders.json",
+                queryParams
+              );
+              debugger;
+              const orderList = [];
+              if (resp.data && Object.keys(resp.data).length > 0) {
+                let matchIndex = -1 , i = 0;
+                for (var dataId in resp.data) {
+                   if (resp.data[dataId].orderNo === orderId)
+                   {
+                     matchIndex = i;
+                   }
+                     orderList.push(resp.data[dataId]);
+                     i++;
+                }
+                if(matchIndex >-1){dispatch(setSelectedOrder(orderList[matchIndex]));}
+                dispatch(fetchOrdersForUser(orderList));
+                dispatch(CoreActions.dispatchApiSuccess());
                 dispatch(CoreActions.redirectUrlThunk("/orders/" + orderId));
-
+              }
             }
-            else
-            {
-               let payload = {
-                 status: 404,
-                 message: 'No such order'
-               };
-               dispatch(CoreActions.dispatchApiError(payload));
+            else{
+              let matchIndex = -1;
+              orderList.forEach((orderItem,index) => {
+                if (orderItem.orderNo === orderId) {
+                  matchIndex = index;
+                }   
+              });
+              if(matchIndex > -1)
+              {
+                  dispatch(setSelectedOrder(orderList[matchIndex]));
+                  dispatch( CoreActions.dispatchApiSuccess());
+                  dispatch(CoreActions.redirectUrlThunk("/orders/" + orderId));
+  
+              }
+              else
+              {
+                 let payload = {
+                   status: 404,
+                   message: 'No such order'
+                 };
+                 dispatch(CoreActions.dispatchApiError(payload));
+              }
             }
         }
     }
