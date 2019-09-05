@@ -18,7 +18,6 @@ class CheckoutComponent extends Component {
     if (this.props.cartObject.cartItems.length > 0) {
       return (
         <React.Fragment>
-          <h1>Checkout</h1>
           <CardDeck>
             <SummaryComponent
               cartItems={this.props.cartObject.cartItems}
