@@ -52,3 +52,9 @@ export const updateCartSummary = () => {
       type: "UPDATE_CART_SUMMARY"
     };
 }
+
+export const clearCartData = () => {
+  return{
+    type : "EMPTY_CART"
+  }
+}
