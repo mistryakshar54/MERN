@@ -85,6 +85,19 @@ const MiniCartReducer = (stateSlice = initialState.cart, action) => {
         };
       }
     }
+    case "EMPTY_CART" : {
+      let cartObj = Object.assign({}, stateSlice);
+      return {
+        ...stateSlice,
+        cartItems: [],
+        cartSummary: {
+          totalItems: 0,
+          totalAmount: 0,
+          shippingCharge: 0,
+          currency: "INR"
+        }
+      };
+    }
     default:{
       return { ...stateSlice };
     }
