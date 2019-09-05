@@ -9,6 +9,12 @@ class OrderListComponent extends Component {
   componentDidMount(){
     this.props.onFetchOrderList();
   }
+  getFormattedDate = (dateData) => {
+    const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    let current_datetime = new Date(dateData);
+    let formatted_date = months[current_datetime.getMonth()]+" " +current_datetime.getDate() + " " + current_datetime.getFullYear()
+    return formatted_date;
+  }
   render() {
     const {orderList} = this.props;
     return (
@@ -37,7 +43,7 @@ class OrderListComponent extends Component {
                       >
                         {item.orderNo}
                       </td>
-                      <td>{item.createdDate}</td>
+                      <td>{ this.getFormattedDate(item.createdDate)}</td>
                       <td>{item.orderitems.length}</td>
                       <td>
                         {item.paymentsummary.totalAmount}{" "}
