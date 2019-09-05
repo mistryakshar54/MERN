@@ -1,4 +1,5 @@
 import * as CoreActions from "./CoreActionCreators";
+import {clearCartData} from './MiniCartActionCreator';
 export const createOrderThunk = () => {
     return async(dispatch , getState) => {
         dispatch( CoreActions.dispatchApiLoading());
@@ -16,6 +17,7 @@ export const createOrderThunk = () => {
         {
             dispatch( CoreActions.dispatchApiSuccess() );
             dispatch( setSelectedOrder( orderData ) );
+            dispatch(clearCartData());
             dispatch(CoreActions.redirectUrlThunk("/orders/" + orderData.orderNo));
         }
         else
