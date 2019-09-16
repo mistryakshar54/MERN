@@ -103,28 +103,38 @@ exports.deleteProduct = ( req,res ) => {
 }
 
 exports.updateProductData = ( req, res ) => {
-let productId = req.pa;
-Product.deleteSingleProduct(productId)
-  .then(deleteResponse => {
-    if (!deleteResponse || deleteResponse == null) {
-      res.status(404).send({ message: "No such product" });
-    } else if (deleteResponse.deletedCount > 0) {
-      res.status(200).send({ data: [], message: "Success", totalRecords: 1 });
-    } else if (deleteResponse.deletedCount === 0) {
-      res
-        .status(404)
-        .send({ data: [], message: "Record doesnot exist", totalRecords: 0 });
-    } else {
-      res
-        .status(500)
-        .send({
-          data: [],
-          message: "Could not perform the operation",
-          totalRecords: 0
-        });
-    }
+let productId = req.params.productId;
+let dataToUpdate = req.body.dataToUpdate;
+console.log("\n\n\nData To Uodate\n\n\n" , dataToUpdate);
+
+// Product.findByIdAndUpdate(
+//   productId,
+//   {
+    
+//       description: dataToUpdate.description
+    
+//   },
+//   { useFindAndModify : false}
+// ).exec()
+Product.findByIdAndUpdate(
+  ObjectId(productId),
+  {
+      description: "Sample Description" 
+  },
+  { useFindAndModify: false,
+    upsert: false, new: false }
+)
+  .then(updateResponse => {
+    console.log(updateResponse);
+    res.status(200).send({
+      updateResponse
+      // data: [],
+      // message: "Success",
+      // totalRecords: deleteResponse.deletedCount
+    });
   })
   .catch(err => {
-    res.status(400).send({ message: "Bad Request" });
+    console.log(err);
+    res.status(400).send({ message: "Bad Request", error: err });
   });
 }
