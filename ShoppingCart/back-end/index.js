@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 var indexRouter = require('./routes/index')
 const productRouter = require('./routes/product');
+const userRouter = require("./routes/user");
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(
@@ -14,6 +15,7 @@ app.use(
 
 app.use('/', indexRouter);
 app.use('/product', productRouter);
+app.use("/login", userRouter);
 
 const server = http.createServer(app);
 
