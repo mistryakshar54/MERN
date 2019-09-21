@@ -6,6 +6,8 @@ var indexRouter = require('./routes/index')
 const productRouter = require('./routes/product');
 const userRouter = require("./routes/user");
 const bodyParser = require('body-parser');
+var session = require("express-session");
+
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -13,6 +15,15 @@ app.use(
   })
 );
 
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  })
+);
 app.use('/', indexRouter);
 app.use('/product', productRouter);
 app.use("/login", userRouter);
