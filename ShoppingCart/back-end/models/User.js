@@ -6,7 +6,9 @@ const UserSchema = new mongoose.Schema({
   password: String,
   profileImg: String,
   isAdmin : Boolean,
-  permissions : String
+  permissions : String,
+  usertype : String,
+  userCart : {}
 });
 
 UserSchema.methods.generateToken = function() {
