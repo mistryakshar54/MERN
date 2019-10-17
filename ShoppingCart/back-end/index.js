@@ -5,6 +5,7 @@ const app = express();
 var indexRouter = require('./routes/index')
 const productRouter = require('./routes/product');
 const userRouter = require("./routes/user");
+const orderRouter = require("./routes/order");
 const bodyParser = require('body-parser');
 
 const session = require("express-session");
@@ -36,6 +37,7 @@ app.set("trust proxy", 1); // trust first proxy
 app.use('/', indexRouter);
 app.use('/product', productRouter);
 app.use("/user", userRouter);
+app.use('/order' , orderRouter);
 
 // const server = http.createServer(app);
 
