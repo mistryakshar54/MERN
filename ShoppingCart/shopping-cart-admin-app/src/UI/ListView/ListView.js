@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import { typography } from "@material-ui/system";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const useStyles = makeStyles({
   root: {
@@ -15,59 +14,78 @@ const useStyles = makeStyles({
   },
   table: {
     minWidth: 650
+  },
+  checkBoxWidth : {
+      width:"5%"
   }
 });
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9)
-];
-
-const extractData = ( data , headers ) => {
-    if(data && data.length > 0 ) {
-        return(
-            data.map( ( row , index ) => {
-                return (
-                <TableRow key={"row_"+index}>
-                    {headers.map((headerData , itemIndex) => {
-                        return (
-                          <TableCell
-                            key={"row_" + index + "_" + itemIndex}
-                            align={headerData.align ? headerData.align : "left"}
-                          >
-                            {row[headerData.title]}
-                          </TableCell>
-                        );
-                    })}
-                
-                </TableRow>
-                );
-            })
-        )
-    }
-    else{
-        return (
-          <TableRow key={"row_0"}>
-            <td>Nothing to display!!</td>
-          </TableRow>
-        );
-    }
-}
-
  const ListView = ( props ) => {
+    const [selectedItems, setSelectedItems] = useState([]);
+    const handleItemCheck = itemIndex => {
+    const items = selectedItems;
+    const index = items.indexOf(itemIndex);
+    if (index > -1) {
+    setSelectedItems(items.filter(item => item !== itemIndex));
+    } else {
+    items.push(itemIndex);
+    setSelectedItems([...items]);
+    }
+  };   
+
+const extractData = (data, headers) => {
+  if (data && data.length > 0) {
+    return data.map((row, index) => {
+      return (
+        <TableRow key={"row_" + index}>
+          <TableCell
+            className={classes.checkBoxWidth}
+            key={"row_" + index + "_cb"}
+          >
+            <Checkbox
+              checked={
+                selectedItems && selectedItems.indexOf(index) === -1
+                  ? false
+                  : true
+              }
+              onChange={() => handleItemCheck(index)}
+              color="primary"
+              inputProps={{
+                "aria-label": "secondary checkbox"
+              }}
+            />
+          </TableCell>
+          {headers.map((headerData, itemIndex) => {
+            return (
+              <TableCell
+                key={"row_" + index + "_" + itemIndex}
+                align={headerData.align ? headerData.align : "left"}
+              >
+                {row[headerData.name]}
+              </TableCell>
+            );
+          })}
+        </TableRow>
+      );
+    });
+  } else {
+    return (
+      <TableRow key={"row_0"}>
+        <td>Nothing to display!!</td>
+      </TableRow>
+    );
+  }
+};
+
   const classes = useStyles();
-  const { headers , data , hasPagination , hasSorting , sortFields } = props;
+  const { headers , data , hasPagination , hasSorting , sortFields} = props;
   return (
     <Table className={classes.table} aria-label="simple table">
       <TableHead>
         <TableRow>
+        <TableCell
+            key={"header_cb"}
+        ></TableCell>
           {headers && headers.length > 0
             ? headers.map((item, index) => {
                 return (
@@ -75,7 +93,7 @@ const extractData = ( data , headers ) => {
                     key={"header_" + index}
                     align={item.align ? item.align : "left"}
                   >
-                    {item.title}
+                    {item.displayName}
                   </TableCell>
                 );
               })

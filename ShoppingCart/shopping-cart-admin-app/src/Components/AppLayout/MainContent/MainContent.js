@@ -14,16 +14,16 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
-  title : {
-    flexGrow : 1
+  title: {
+    flexGrow: 1
   },
-  profileImg : {
-    borderRadius : "50%"
+  profileImg: {
+    borderRadius: "50%"
   },
-  paperContent : {
-    display : "flex",
-    flexGrow : 1,
-    padding: theme.spacing(0, 1),    
+  paperContent: {
+    display: "flex",
+    flexGrow: 1,
+    padding: theme.spacing(0, 1)
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -67,6 +67,11 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen
     }),
     marginLeft: -drawerWidth
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
