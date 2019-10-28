@@ -9,7 +9,7 @@ const Loader = ( props ) => {
             return <div>Loaded!</div>
         }
         else{
-            return <div>Still Loading...</div>;
+            return props.children;
         }
         
 }
