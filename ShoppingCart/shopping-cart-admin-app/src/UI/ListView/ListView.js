@@ -6,6 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
+import Icon from "@material-ui/core/Icon";
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +23,16 @@ const useStyles = makeStyles({
 
  const ListView = ( props ) => {
     const classes = useStyles();
-    const { headers , data , hasPagination , hasSorting , sortFields , hasMultiSelect} = props;
+    const {
+      headers,
+      data,
+      hasPagination,
+      hasSorting,
+      sortFields,
+      isReadOnly,
+      hasMultiSelect
+    } = props;
+
     const [selectedItems, setSelectedItems] = useState([]);
     const handleItemCheck = itemIndex => {
     const items = selectedItems;
@@ -40,26 +50,27 @@ const extractData = (data, headers) => {
     return data.map((row, index) => {
       return (
         <TableRow key={"row_" + index}>
-           {
-              (hasMultiSelect === true) ?
-          <TableCell
-            className={classes.checkBoxWidth}
-            key={"row_" + index + "_cb"}
-          >
-           
-            <Checkbox
-              checked={
-                selectedItems && selectedItems.indexOf(index) === -1
-                  ? false
-                  : true
-              }
-              onChange={() => handleItemCheck(index)}
-              color="primary"
-              inputProps={{
-                "aria-label": "secondary checkbox"
-              }} />
-          </TableCell>
-             : "" }
+          {hasMultiSelect === true ? (
+            <TableCell
+              className={classes.checkBoxWidth}
+              key={"row_" + index + "_cb"}
+            >
+              <Checkbox
+                checked={
+                  selectedItems && selectedItems.indexOf(index) === -1
+                    ? false
+                    : true
+                }
+                onChange={() => handleItemCheck(index)}
+                color="primary"
+                inputProps={{
+                  "aria-label": "secondary checkbox"
+                }}
+              />
+            </TableCell>
+          ) : (
+            ""
+          )}
           {headers.map((headerData, itemIndex) => {
             return (
               <TableCell
@@ -70,6 +81,14 @@ const extractData = (data, headers) => {
               </TableCell>
             );
           })}
+          {!isReadOnly ? (
+            <TableCell>
+              <Icon>edit</Icon>
+              <Icon>delete</Icon>
+            </TableCell>
+          ) : (
+            ""
+          )}
         </TableRow>
       );
     });
@@ -100,6 +119,7 @@ const extractData = (data, headers) => {
                 );
               })
             : null}
+            {(isReadOnly === false) ? <TableCell key={"header_actions"} >Actions</TableCell> : ""}
         </TableRow>
       </TableHead>
       <TableBody>

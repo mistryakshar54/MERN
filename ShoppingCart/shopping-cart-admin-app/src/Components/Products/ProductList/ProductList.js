@@ -55,6 +55,7 @@ const ProductListCompoenent  = ( props ) => {
           data={data}
           hasMultiSelect={false}
           headers={listViewHeaders}
+          isReadOnly={false}
         />
       </div>
     );
