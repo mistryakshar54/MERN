@@ -21,6 +21,8 @@ const useStyles = makeStyles({
 });
 
  const ListView = ( props ) => {
+    const classes = useStyles();
+    const { headers , data , hasPagination , hasSorting , sortFields , hasMultiSelect} = props;
     const [selectedItems, setSelectedItems] = useState([]);
     const handleItemCheck = itemIndex => {
     const items = selectedItems;
@@ -38,10 +40,13 @@ const extractData = (data, headers) => {
     return data.map((row, index) => {
       return (
         <TableRow key={"row_" + index}>
+           {
+              (hasMultiSelect === true) ?
           <TableCell
             className={classes.checkBoxWidth}
             key={"row_" + index + "_cb"}
           >
+           
             <Checkbox
               checked={
                 selectedItems && selectedItems.indexOf(index) === -1
@@ -52,9 +57,9 @@ const extractData = (data, headers) => {
               color="primary"
               inputProps={{
                 "aria-label": "secondary checkbox"
-              }}
-            />
+              }} />
           </TableCell>
+             : "" }
           {headers.map((headerData, itemIndex) => {
             return (
               <TableCell
@@ -77,15 +82,12 @@ const extractData = (data, headers) => {
   }
 };
 
-  const classes = useStyles();
-  const { headers , data , hasPagination , hasSorting , sortFields} = props;
+  
   return (
     <Table className={classes.table} aria-label="simple table">
       <TableHead>
         <TableRow>
-        <TableCell
-            key={"header_cb"}
-        ></TableCell>
+          {(hasMultiSelect === true) ? <TableCell key={"header_cb"} ></TableCell> : ""}
           {headers && headers.length > 0
             ? headers.map((item, index) => {
                 return (
@@ -98,25 +100,9 @@ const extractData = (data, headers) => {
                 );
               })
             : null}
-          {/* <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
         </TableRow>
       </TableHead>
       <TableBody>
-        {/* {data.map((row,index) => (
-          <TableRow key={"row_"+index}>
-            <TableCell component="th" scope="row">
-              {row.name}
-            </TableCell>
-            <TableCell align="right">{row.calories}</TableCell>
-            <TableCell align="right">{row.fat}</TableCell>
-            <TableCell align="right">{row.carbs}</TableCell>
-            <TableCell align="right">{row.protein}</TableCell>
-          </TableRow>
-        ))} */}
         { extractData( data , headers ) }
       </TableBody>
     </Table>

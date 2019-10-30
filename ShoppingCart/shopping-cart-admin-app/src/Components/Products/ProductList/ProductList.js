@@ -43,15 +43,19 @@ const ProductListCompoenent  = ( props ) => {
     return (
       <div className={classes.container}>
         <div>
-            <TextField
+          <TextField
             id="standard-search"
             label="Search"
             type="search"
             className={classes.textField}
             margin="normal"
-            />
+          />
         </div>
-        <ListView data={data} headers={listViewHeaders} />
+        <ListView
+          data={data}
+          hasMultiSelect={false}
+          headers={listViewHeaders}
+        />
       </div>
     );
     
