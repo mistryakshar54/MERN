@@ -1,8 +1,10 @@
-import React from 'react';
+import React  from 'react';
 import ListView from '../../../UI/ListView/ListView';
 import { listViewHeaders } from './ProductListUtil';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
+import { useDispatch } from "react-redux";
+import {fetchProductsList} from "../../../store/thunks/ProductsActionCreators";
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -25,13 +27,15 @@ const useStyles = makeStyles(theme => ({
 
 
 const ProductListCompoenent  = ( props ) => {
+    const dispatch = useDispatch();
+    dispatch(fetchProductsList());
     const classes = useStyles();
     const data = [
       {
         name: "Laptop",
         price: 50000,
         code: "Laptop-785",
-        isActive: "true"
+        isActive: "true",
       },
       {
         name: "Laptop",

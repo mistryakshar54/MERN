@@ -39,23 +39,23 @@ const CoreReducer = (stateSlice = intialState.core, action) => {
         appState: action.historyData
       };
     }
-    case "OPEN_APP_DRAWER" :{
-        return {
-          ...stateSlice,
-          appdrawer: {
-            ...stateSlice.appdrawer,
-            open: true
-          }
-        };
+    case "OPEN_APP_DRAWER": {
+      return {
+        ...stateSlice,
+        appdrawer: {
+          ...stateSlice.appdrawer,
+          open: true
+        }
+      };
     }
-    case "CLOSE_APP_DRAWER" :{
-        return {
-          ...stateSlice,
-          appdrawer: {
-            ...stateSlice.appdrawer,
-            open: false
-          }
-        };
+    case "CLOSE_APP_DRAWER": {
+      return {
+        ...stateSlice,
+        appdrawer: {
+          ...stateSlice.appdrawer,
+          open: false
+        }
+      };
     }
     default:
       return { ...stateSlice };
