@@ -7,6 +7,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Checkbox from "@material-ui/core/Checkbox";
 import Icon from "@material-ui/core/Icon";
+import TablePagination from "@material-ui/core/TablePagination";
 
 const useStyles = makeStyles({
   root: {
@@ -106,7 +107,11 @@ const extractData = (data, headers) => {
     <Table className={classes.table} aria-label="simple table">
       <TableHead>
         <TableRow>
-          {(hasMultiSelect === true) ? <TableCell key={"header_cb"} ></TableCell> : ""}
+          {hasMultiSelect === true ? (
+            <TableCell key={"header_cb"}></TableCell>
+          ) : (
+            ""
+          )}
           {headers && headers.length > 0
             ? headers.map((item, index) => {
                 return (
@@ -119,11 +124,27 @@ const extractData = (data, headers) => {
                 );
               })
             : null}
-            {(isReadOnly === false) ? <TableCell key={"header_actions"} >Actions</TableCell> : ""}
+          {isReadOnly === false ? (
+            <TableCell key={"header_actions"}>Actions</TableCell>
+          ) : (
+            ""
+          )}
         </TableRow>
       </TableHead>
       <TableBody>
-        { extractData( data , headers ) }
+        {extractData(data, headers)}
+        <TablePagination
+          component="div"
+          count={data.length}
+          page={0}
+          backIconButtonProps={{
+            "aria-label": "previous page"
+          }}
+          nextIconButtonProps={{
+            "aria-label": "next page"
+          }}
+          
+        />
       </TableBody>
     </Table>
   );
