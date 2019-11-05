@@ -1,12 +1,19 @@
 import * as CoreActions from './CoreActionCreators';
 export const fetchProductsList = () => {
     return async( dispatch , getState ) => {
-        debugger;
+        dispatch( CoreActions.dispatchApiLoading() );
         const getResponse = await CoreActions.dispatchGet("product");
         if (getResponse.totalRecords > 0){
+            dispatch(CoreActions.dispatchApiSuccess());
             dispatch(loadProducts(getResponse.data));
         }
         else{
+            dispatch(
+              CoreActions.dispatchApiError({
+                status: 500,
+                message : getResponse.errorMessage
+              })
+            );
             //dispatch the error modal or anything to stop loading shit!
         }
     }
